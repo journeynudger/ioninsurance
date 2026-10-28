@@ -1,6 +1,6 @@
 #!/bin/sh
-# Battle-tests the contact form against a production build. Run from the repo root after `npm run build`.
-# Starts a mock Resend/webhook receiver on :4999 and six servers on :3141-3146, each wired differently.
+# Battle-tests the contact form against a production build. Run with `npm run test:form`.
+# test:form builds with NEXT_PUBLIC_FORMS_BACKEND=email first. Starts a mock Resend/webhook receiver on :4999 and six servers on :3141-3146, each wired differently.
 set -e
 LOG=$(mktemp); OUT=$(mktemp -d)
 node scripts/form-tests/mock.mjs "$LOG" & PIDS=$!

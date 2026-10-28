@@ -8,7 +8,7 @@ import { mountCaptcha } from "@/components/recaptcha";
 type Status = "idle" | "sending" | "sent" | "failed";
 const EMPTY: ContactValues = { first: "", last: "", email: "", message: "" };
 const ORDER: (keyof ContactValues)[] = ["first", "last", "email", "message"];
-const USE_WORDPRESS = process.env.NEXT_PUBLIC_FORMS_BACKEND === "gravity";
+const USE_WORDPRESS = process.env.NEXT_PUBLIC_FORMS_BACKEND !== "email";
 
 export default function ContactForm({ id = "contact" }: { id?: string }) {
   const [values, setValues] = useState<ContactValues>(EMPTY);

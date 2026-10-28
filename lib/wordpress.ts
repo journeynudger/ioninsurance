@@ -1,9 +1,13 @@
 import type { ContactValues } from "@/lib/contact";
 
+/** Where WordPress keeps living once ioninsuranceinc.com points at this site. Override with WORDPRESS_ORIGIN. */
+const DEFAULT_ORIGIN = "https://wp.ioninsuranceinc.com";
+
 /** Preserve the existing Gravity Forms entry, notifications and reCAPTCHA checks. */
 export async function submitToWordPress(values: ContactValues, captcha: string) {
-  const origin = process.env.WORDPRESS_ORIGIN?.replace(/\/$/, "");
-  if (!origin) return null;
+  // Gravity Forms is the default; NEXT_PUBLIC_FORMS_BACKEND=email switches to lib/deliver.ts.
+  if (process.env.NEXT_PUBLIC_FORMS_BACKEND === "email") return null;
+  const origin = (process.env.WORDPRESS_ORIGIN || DEFAULT_ORIGIN).replace(/\/$/, "");
   if (!captcha && process.env.FORMS_MODE !== "validate") {
     return { ok: false, status: 422, message: "Please complete the CAPTCHA before sending." };
   }
