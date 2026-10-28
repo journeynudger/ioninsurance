@@ -1,0 +1,34 @@
+{
+  "_source": "/privacy-policy and /terms-and-conditions, 2026-10-27. Text verbatim. The policy mentions a 'Revised' date and newsletter sign-ups; the live page shows neither (client question).",
+  "privacy": {
+    "title": "Privacy Policy",
+    "lede": "Privacy Policy of ION Insurance Company, Inc.",
+    "sections": [
+      { "title": "Introduction", "paragraphs": ["Welcome to ION Insurance Company, Inc. (“ION”, “we”, “us”, or “our”). This Privacy Policy applies to your use of our website at https://ioninsuranceinc.com, including any content, functionality, and services offered on or through https://ioninsuranceinc.com."] },
+      { "title": "Information Collection", "items": [
+        { "term": "Information You Provide", "text": "This includes details submitted through contact forms, newsletter sign-ups, and any other interactions on our site where you input data voluntarily." },
+        { "term": "Automated Information", "text": "Automatically gathered data may include your IP address, browser type, browsing history, and other interactions with our site." }
+      ] },
+      { "title": "Use of Information", "paragraphs": ["We use collected information to:"], "list": ["Maintain, operate, and improve our website.", "Analyze user behavior and trends to enhance user experience.", "Communicate for marketing and promotional purposes.", "Ensure the security of our website, prevent fraud, and enforce our legal agreements."] },
+      { "title": "Sharing of Information", "paragraphs": ["We may share your data with:"], "items": [
+        { "term": "Service Providers", "text": "Entities that perform services on our behalf, such as hosting, data analytics, and customer service." },
+        { "term": "Legal Requirements", "text": "When necessary to comply with laws or respond to lawful requests and legal processes." }
+      ] },
+      { "title": "Data Protection", "paragraphs": ["We implement security measures designed to protect your personal data from unauthorized access, use, or disclosure."] },
+      { "title": "Changes to This Privacy Policy", "paragraphs": ["This Privacy Policy may be updated occasionally, with the revised version reflected by the “Revised” date at the document’s top. We encourage you to review this policy periodically."] },
+      { "title": "Contact Us", "paragraphs": ["If you have questions or comments about this policy, please contact us below."] }
+    ]
+  },
+  "terms": {
+    "title": "Terms & Conditions",
+    "lede": "Terms and Conditions for ION Insurance Company, Inc.",
+    "sections": [
+      { "title": "Acceptance of Terms", "paragraphs": ["By accessing https://ioninsuranceinc.com, you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, you must not use our website."] },
+      { "title": "Use of Website", "paragraphs": ["The website is intended for personal, non-commercial use, except as explicitly permitted by these terms."] },
+      { "title": "Prohibited Activities", "paragraphs": ["You are prohibited from:"], "list": ["Using the site for illegal purposes.", "Compromising the security of the site.", "Infringing on intellectual property rights."] },
+      { "title": "Intellectual Property", "paragraphs": ["All content, features, and functionality on the site are owned by, licensed to, or used with permission by ION Insurance Company, Inc., and are protected by copyright, trademark, and other intellectual property laws."] },
+      { "title": "Amendments to Terms", "paragraphs": ["We reserve the right to amend these Terms at any time. All changes are effective immediately upon posting to the website."] },
+      { "title": "Contact Us", "paragraphs": ["For more details or to address any concerns, please contact us below."] }
+    ]
+  }
+}

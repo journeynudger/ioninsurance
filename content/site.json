@@ -1,0 +1,13 @@
+{
+  "_source": "Live site header, footer and FAQ (2026-10-27). The site lists no phone number or street address.",
+  "name": "ION Insurance",
+  "legalName": "ION Insurance Company, Inc.",
+  "description": "ION Insurance Company specializes in reinsurance, insurance, and various insurance-based risk mitigation strategies: commercial property, marine, aviation, financial lines, surety and specialty.",
+  "email": "info@ion.co.cr",
+  "nav": [
+    { "label": "About", "href": "/about" },
+    { "label": "Products", "href": "/products" },
+    { "label": "Financials", "href": "/financials" },
+    { "label": "Connect", "href": "/connect" }
+  ]
+}

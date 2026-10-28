@@ -1,0 +1,231 @@
+{
+  "_source": "Products page (/products) and the home page's six tabs and slider taglines, 2026-10-27. Text verbatim.",
+  "lines": [
+    {
+      "id": "commercial-property",
+      "name": "Commercial Property",
+      "tagline": "Building Confidence with Comprehensive Coverage for Property and Engineering Ventures",
+      "summary": "In the realm of construction and property, every project is a monument to ambition, yet vulnerable to the unexpected. Ion’s Property & Engineering Insurance is designed to protect against the unforeseen, covering damage and disruption. As you build towards the sky, our coverage ensures that your vision stands firm on the ground.",
+      "heading": "Safeguarding Your Business Assets with Tailored Commercial Property Insurance",
+      "intro": "Protecting your physical assets is critical to your business's success. ION Insurance's Commercial Property Insurance is designed to offer robust protection for your buildings, equipment, and inventory. Our policy adapts to the unique risks your business faces, providing customized coverage that ensures quick recovery from unexpected events like fires, floods, and theft. With ION, you can focus on your business operations knowing that your physical assets are comprehensively protected against a wide range of risks.",
+      "coverage": [
+        {
+          "name": "Property Damage Coverage",
+          "text": "Immediate financial support to repair or replace damaged property, ensuring minimal business interruption."
+        },
+        {
+          "name": "Business Interruption Insurance",
+          "text": "Compensates for lost income and covers operating expenses when your business is temporarily closed."
+        },
+        {
+          "name": "Equipment Breakdown Protection",
+          "text": "Covers the cost of repairing or replacing equipment that's critical to your operations."
+        },
+        {
+          "name": "Natural Disaster Resilience",
+          "text": "Specialized coverage for damages from natural events, including storms, earthquakes, and floods."
+        },
+        {
+          "name": "Theft and Vandalism Recovery",
+          "text": "Fast response and support in the event of theft or vandalism, helping you quickly resume normal operations."
+        },
+        {
+          "name": "Construction",
+          "text": "Comprehensive protection for projects under construction, including coverage for materials, labor, and liability, ensuring smooth project progression despite unexpected incidents."
+        },
+        {
+          "name": "General Liability",
+          "text": "Essential safeguard against legal and financial consequences of accidents, injuries, and damages occurring on your business premises or as a result of your operations, providing peace of mind and stability."
+        }
+      ],
+      "closing": "For businesses, the certainty of asset protection is invaluable. ION's Commercial Property Insurance delivers peace of mind, ensuring that your physical investments are secured against unforeseen damages. Our comprehensive coverage enables businesses of all sizes to withstand disruptions and thrive, reinforcing our commitment to your success.",
+      "image": {
+        "src": "/images/lines/property.jpg",
+        "width": 1400,
+        "height": 1400,
+        "alt": "A commercial building with roll-up loading doors"
+      }
+    },
+    {
+      "id": "financial-lines",
+      "name": "Financial Lines",
+      "tagline": "Shielding Professional Excellence with Robust Financial Lines Coverage for Today’s World",
+      "summary": "In a world where the stakes are high, professional reputations and financial stability can hang in the balance. Ion’s Financial Lines Insurance provides a safety net, protecting against claims of negligence, harm, or failure to deliver in financial services. Stand tall in your professional endeavors, knowing that we’ve got your back.",
+      "heading": "Securing Your Financial Interests with Premier Financial Lines Insurance",
+      "intro": "In the dynamic landscape of modern business, protecting your organization from financial losses due to litigation is crucial. ION's Financial Lines Insurance offers comprehensive solutions tailored to shield your business from third-party claims of errors, omissions, or negligence. Our diverse range of policies ensures that whether you face legal challenges or the complexities of cyber threats, your financial health is preserved. Partner with ION to navigate these risks with confidence and maintain your business's integrity and profitability.",
+      "coverage": [
+        {
+          "name": "Professional Liability Insurance",
+          "text": "Safeguarding professionals like doctors, lawyers, and accountants from claims resulting from errors in service delivery. This coverage is vital for maintaining your professional reputation and operational continuity."
+        },
+        {
+          "name": "Errors and Omissions Insurance (E&O)",
+          "text": "Ideal for businesses providing advisory services, this insurance covers legal defenses and settlements arising from service-related mistakes."
+        },
+        {
+          "name": "Directors and Officers Liability Insurance (D&O)",
+          "text": "Protects your management from claims related to governance and business management errors, crucial for maintaining corporate governance standards."
+        },
+        {
+          "name": "Cyber Liability Insurance",
+          "text": "Offers protection against claims from data breaches and cyber-attacks, essential for businesses handling sensitive data."
+        },
+        {
+          "name": "Employment Practices Liability Insurance (EPLI)",
+          "text": "Shields against claims of workplace-related issues such as discrimination or wrongful termination, supporting your commitment to fair employment practices."
+        }
+      ],
+      "closing": "At ION Insurance, we understand that every business faces unique challenges. That's why our Financial Lines Insurance is more than a policy—it's a partnership. We provide tailored solutions that align with your specific needs and exposures, backed by our commitment to excellence. Whether you operate locally or globally, our policies offer the protection you need to secure your financial assets and ensure peace of mind. Enhance your business's profitability and reputation with ION's dedicated coverage, designed to support robust risk management and financial stability.",
+      "image": {
+        "src": "/images/lines/financial-lines.jpg",
+        "width": 1400,
+        "height": 1400,
+        "alt": "A judge's gavel on a desk beside a signed document"
+      }
+    },
+    {
+      "id": "specialty",
+      "name": "Specialty",
+      "tagline": "Covering the Uncoverable: Specialty Insurance for Your Unique Needs",
+      "summary": "For the unique, the unconventional, and the rare, Ion’s Specialty Insurance crafts coverage as distinct as your needs. From high-value collectibles to niche market operations, our tailored policies ensure that the extraordinary is never left unprotected. Embrace your uniqueness, with Ion as your insurance artisan.",
+      "heading": "Customized Coverage Solutions with Specialty Insurance",
+      "intro": "For those with unique risks or assets that don't fit traditional insurance categories, ION Insurance offers Specialty Insurance. Our approach is to understand the nuances of your unique needs, providing bespoke coverage that ensures comprehensive protection. Whether it's high-value collectibles, event cancellations, or niche industry operations, our Specialty Insurance policies are crafted with precision to safeguard against the unexpected. With ION, you gain access to tailored insurance solutions that embrace the uniqueness of your assets or business.",
+      "coverage": [
+        {
+          "name": "High-Value Item Coverage",
+          "text": "Specialized protection for collectibles, art, and other valuables."
+        },
+        {
+          "name": "Event Cancellation Insurance",
+          "text": "Coverage for financial losses due to the cancellation, interruption, or postponement of events."
+        },
+        {
+          "name": "Niche Market Expertise",
+          "text": "Tailored policies for industries with unique risks, such as entertainment or technology."
+        },
+        {
+          "name": "Global Coverage Options",
+          "text": "Worldwide protection for assets or operations outside the standard geographical limits."
+        },
+        {
+          "name": "Custom Risk Assessment",
+          "text": "In-depth evaluation of your specific risk profile to ensure optimal coverage."
+        }
+      ],
+      "closing": "Specialty Insurance from ION Insurance transcends conventional policies, providing security for the extraordinary. Our commitment is to offer unparalleled coverage for those who move beyond the mainstream, ensuring that your unique risks are meticulously managed and protected.",
+      "image": {
+        "src": "/images/lines/specialty.jpg",
+        "width": 1400,
+        "height": 1400,
+        "alt": "A hand touching a screen of connected digital icons"
+      }
+    },
+    {
+      "id": "marine",
+      "name": "Marine",
+      "tagline": "Navigate with Confidence: Comprehensive Marine Insurance for Your Voyages",
+      "summary": "The sea carries both opportunities and risks. Ion’s Marine Insurance provides the assurance you need, covering physical loss or damage to ships, cargo, and marine transport means. Whether battling the stormy seas or docked at a bustling port, our coverage is your steadfast ally.",
+      "heading": "Navigating the Waters of Global Commerce with Marine Insurance",
+      "intro": "The seas are both a pathway and a barrier to global commerce, presenting unique challenges and risks to maritime operations. ION Insurance's Marine Insurance provides a comprehensive shield against the unpredictable nature of sea transport. Our policies are tailored to support the needs of vessel owners, shipping companies, and cargo handlers, offering real-time risk management for every voyage. With our innovative approach, we ensure seamless protection from port to port, safeguarding your maritime investments against piracy, environmental hazards, and logistical complications.",
+      "coverage": [
+        {
+          "name": "Cargo Insurance",
+          "text": "Secure your goods against loss or damage during transit, whether by sea, air, or land."
+        },
+        {
+          "name": "Hull Insurance",
+          "text": "Protects the vessel's structure and machinery against physical damage from collisions, grounding, or weather events."
+        },
+        {
+          "name": "Liability Coverage",
+          "text": "Offers protection against legal liabilities arising from collisions, pollution, and damage to cargo or third-party properties."
+        },
+        {
+          "name": "Freight Insurance",
+          "text": "Guards against the loss of freight revenue due to undelivered goods or voyage cancellations."
+        },
+        {
+          "name": "Protection and Indemnity (P&I)",
+          "text": "Provides comprehensive coverage for a wide range of third-party liabilities, including personal injury to crew, passengers, and environmental damage."
+        }
+      ],
+      "closing": "Marine Insurance from ION ensures that your journey through the vastness of the world's oceans is backed by robust, reliable coverage. We understand the complexities of maritime commerce and offer solutions that match the ambition and scale of your operations. With ION, chart your course with confidence, knowing your assets and ventures are well-protected against the perils of the sea.",
+      "image": {
+        "src": "/images/lines/marine.jpg",
+        "width": 1400,
+        "height": 1400,
+        "alt": "A white yacht moored in clear blue water"
+      }
+    },
+    {
+      "id": "aviation",
+      "name": "Aviation",
+      "tagline": "Elevating Safety and Security with Premier Aviation Insurance",
+      "summary": "The sky is the ultimate frontier, but it comes with its own set of challenges. Ion’s Aviation Insurance takes the uncertainty out of the equation, offering coverage for aircraft damage, liability issues, and more. Whether you’re soaring above the clouds or preparing for takeoff, our insurance flies with you, safeguarding your journey.",
+      "heading": "Ascending Beyond Limits with Comprehensive Aviation Insurance",
+      "intro": "The aviation sector demands precision, innovation, and safety. ION Insurance's Aviation Insurance is designed to meet the distinct needs of the aviation industry, offering coverage for airlines, manufacturers, airports, and service providers. From liability protection to hull damage, our policies provide a safety net that allows you to focus on soaring to new heights. With ION, your ambitions are matched with our commitment to your protection, ensuring that your aviation ventures are supported by extensive, reliable coverage.",
+      "coverage": [
+        {
+          "name": "Aircraft Hull and Liability Coverage",
+          "text": "Protection against physical damage to the aircraft and liability for passenger injuries or property damage."
+        },
+        {
+          "name": "Airport Liability Insurance",
+          "text": "Coverage for airport operators against claims related to property damage or bodily injury."
+        },
+        {
+          "name": "In-flight Insurance",
+          "text": "Comprehensive protection for incidents occurring during flight, including turbulence and other in-air risks."
+        },
+        {
+          "name": "Ground Risk Hull Insurance",
+          "text": "Covers the aircraft while it is on the ground and not in operation, protecting against fire, theft, and vandalism."
+        },
+        {
+          "name": "Aviation Products Liability",
+          "text": "For manufacturers and service providers, coverage against claims resulting from product defects or service failures."
+        }
+      ],
+      "closing": "With ION's Aviation Insurance, elevate your operations with the confidence that comes from knowing you are comprehensively covered. Our expertise in the aviation sector enables us to provide policies that address the specific challenges and risks you face, ensuring that your journey in the aviation industry is both successful and secure.",
+      "image": {
+        "src": "/images/lines/aviation.jpg",
+        "width": 1400,
+        "height": 1400,
+        "alt": "A passenger jet parked inside a hangar"
+      }
+    },
+    {
+      "id": "surety",
+      "name": "Surety",
+      "tagline": "Strengthening Your Commitments with Secure Surety Insurance Solutions",
+      "summary": "Trust is the currency of commerce, and Ion’s Surety solutions are the gold standard, guaranteeing your commitments are met. From construction bonds to compliance guarantees, our surety bonds foster confidence between parties, ensuring your promises turn into action. In the intricate dance of business, our surety services are your unwavering partner.",
+      "heading": "Strengthening Business Trust with Surety Insurance Solutions",
+      "intro": "In the world of contracts and agreements, establishing trust is crucial. ION Insurance's Surety Insurance solidifies this trust by providing a financial guarantee that contractual obligations will be met. Our surety bonds cover a wide range of needs, from construction projects to legal compliance, ensuring that your business relationships are built on a foundation of reliability. With ION, you can undertake agreements with confidence, knowing that our surety solutions back your commitments.",
+      "coverage": [
+        {
+          "name": "Contract Bonds",
+          "text": "Guarantee the performance of contractual obligations, particularly in construction and government contracts."
+        },
+        {
+          "name": "Performance Bonds",
+          "text": "Ensure the completion of a project according to contractual terms and conditions, protecting the project owner against losses if the contractor fails to fulfill their obligations."
+        },
+        {
+          "name": "Bid Bonds",
+          "text": "Provide security that a contractor's bid is submitted in good faith, ensuring the contractor will enter into a contract at the bid price if awarded the project."
+        },
+        {
+          "name": "Maintenance Bonds",
+          "text": "Guarantee against defects in materials or workmanship and ensure proper maintenance of the project for a specified period after completion."
+        }
+      ],
+      "closing": "In the realm of contracts, ION's Surety Insurance offers the assurance to solidify trust and uphold commitments. Our bonds, tailored for businesses, contractors, and agencies, ensure obligations are met with unwavering reliability. Move forward with ION's robust support, confidently backing your projects and promises.",
+      "image": {
+        "src": "/images/lines/surety.jpg",
+        "width": 1400,
+        "height": 1400,
+        "alt": "Builders in hard hats on a construction site"
+      }
+    }
+  ]
+}

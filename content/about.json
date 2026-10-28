@@ -1,0 +1,30 @@
+{
+  "_source": "About page (/about), 2026-10-27. Text verbatim. Team names and titles exactly as listed.",
+  "hero": { "eyebrow": "About", "title": "Beyond Insurance", "lede": "Building Futures, Supporting Dreams, Every Step" },
+  "values": [
+    { "kicker": "Our Mission", "title": "Insurance Accessibility", "text": "ION Insurance Company is focused on creating lasting connections with clients through professional and timely communication. Professionalism and excellence are our guiding principles in every interaction to ensure high-quality service. Building trust and demonstrating commitment through transparency and integrity are at the heart of what we do, positioning us as a reliable guardian of our clients’ interests. Ion Insurance is committed to being more than just an insurer; we are a dedicated partner to your success and security." },
+    { "kicker": "Delivering Insurance", "title": "Through Expertise", "text": "At Ion, we are more than just insurance providers; we are architects of stability. Our team of seasoned professionals crafts bespoke insurance solutions, ensuring that each policy is a testament to our dedication to precision and quality." },
+    { "kicker": "Operating Approach", "title": "With Commitment", "text": "Our approach to insurance is deeply rooted in a commitment to serving our clients and communities. We see ourselves as partners in our clients’ journeys, dedicated to providing protection that empowers growth and confidence." }
+  ],
+  "valuesClosing": "These values are the cornerstone of everything we do at Ion Insurance Company. From the way we craft our insurance products to our approach to customer service, and our dedication to diversity, equity, and inclusion, every aspect of our operation is infused with integrity, foresight, and unwavering commitment.",
+  "founder": {
+    "name": "Richard Whitney",
+    "title": "Founder",
+    "bio": "Richard Whitney founded ION Insurance Company in 2016, bringing with him over two decades of experience in risk management and financial services. Under his leadership, the company has grown into a trusted name, known for its innovative solutions and commitment to customer excellence. Richard’s forward-thinking approach has not only shaped the company’s success but has also contributed significantly to upholding industry standards. His dedication to providing personalized and comprehensive insurance solutions continues to drive ION Insurance’s mission, ensuring clients are well-protected and supported.",
+    "image": { "src": "/images/team/richard-whitney.jpg", "width": 534, "height": 800, "alt": "Richard Whitney" }
+  },
+  "team": [
+    { "name": "Opal Whitney", "title": "Chief Executive Officer", "image": "/images/team/opal.jpg" },
+    { "name": "Ryan Whitney", "title": "Risk Management Officer", "image": "/images/team/ryan.jpg" },
+    { "name": "Mandolin Whitney", "title": "Compliance Officer", "image": "/images/team/mandolin.jpg" },
+    { "name": "Marcy Whitney", "title": "Controller", "image": "/images/team/marcy.jpg" },
+    { "name": "Jared Mimozo", "title": "VP of Reinsurance", "image": "/images/team/jared.jpg" },
+    { "name": "Louis Herzer", "title": "Underwriter Specialist", "image": "/images/team/louis.jpg" },
+    { "name": "Leah Sullivan", "title": "Senior Accounts Manager", "image": "/images/team/leah.jpg" },
+    { "name": "Jacquelyn Barrett", "title": "Senior Executive Assistant", "image": "/images/team/jacquelyn.jpg" }
+  ],
+  "groups": [
+    { "name": "ION Insurance U.S. Team", "image": { "src": "/images/team/us-team.jpg", "width": 1600, "height": 1065, "alt": "The ION Insurance U.S. team standing together in an office lobby" } },
+    { "name": "ION Insurance American Samoa Team", "image": { "src": "/images/team/american-samoa-team.jpg", "width": 1600, "height": 1068, "alt": "The ION Insurance American Samoa team in front of the ION Insurance Company sign" } }
+  ]
+}
