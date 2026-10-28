@@ -1,6 +1,6 @@
 #!/bin/sh
 # Battle-tests the contact form against a production build. Run with `npm run test:form` (builds first).
-# Starts a mock Resend/webhook receiver on :4999 and six servers on :3141-3146, each wired differently.
+# Starts a mock Resend/webhook receiver on :4999 and eight servers on :3141-3148, each wired differently.
 set -e
 LOG=$(mktemp); OUT=$(mktemp -d)
 node scripts/form-tests/mock.mjs "$LOG" & PIDS=$!
@@ -12,6 +12,8 @@ s 3143 RESEND_API_KEY=test RESEND_API_URL=http://localhost:4999/fail FORMS_EMAIL
 s 3144 $OK FORMS_WEBHOOK_URL=http://localhost:4999/fail
 s 3145 $OK FORMS_WEBHOOK_URL=http://localhost:4999/slow
 s 3146 FORMS_DRY_RUN=1
+s 3147 AIRTABLE_TOKEN=pat-test AIRTABLE_BASE_ID=appTEST "AIRTABLE_TABLE=Website Messages" AIRTABLE_API_URL=http://localhost:4999/airtable
+s 3148 AIRTABLE_TOKEN=pat-test AIRTABLE_BASE_ID=appTEST "AIRTABLE_TABLE=Website Messages" AIRTABLE_API_URL=http://localhost:4999/fail
 trap 'kill $PIDS 2>/dev/null' EXIT
 sleep 5
 node scripts/form-tests/api-test.mjs "$LOG"

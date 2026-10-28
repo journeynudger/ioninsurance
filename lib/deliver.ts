@@ -7,9 +7,10 @@ import type { ContactValues } from "@/lib/contact";
  *
  *   email    RESEND_API_KEY + FORMS_EMAIL_FROM + FORMS_EMAIL_TO   (Reply-To is the sender)
  *   webhook  FORMS_WEBHOOK_URL (+ FORMS_WEBHOOK_SECRET signs the body, HMAC-SHA256)
+ *   airtable AIRTABLE_TOKEN + AIRTABLE_BASE_ID + AIRTABLE_TABLE   (one row per message)
  */
 
-export interface Delivery { destination: "email" | "webhook"; ok: boolean; detail?: string }
+export interface Delivery { destination: "email" | "webhook" | "airtable"; ok: boolean; detail?: string }
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -47,5 +48,28 @@ export async function deliverToWebhook(v: ContactValues): Promise<Delivery | nul
     return { destination: "webhook", ok: res.ok, detail: `HTTP ${res.status}` };
   } catch (err) {
     return { destination: "webhook", ok: false, detail: (err as Error).message };
+  }
+}
+
+export async function deliverToAirtable(v: ContactValues): Promise<Delivery | null> {
+  const token = process.env.AIRTABLE_TOKEN;
+  const base = process.env.AIRTABLE_BASE_ID;
+  const table = process.env.AIRTABLE_TABLE;
+  if (!token || !base || !table) return null;
+  const api = process.env.AIRTABLE_API_URL || "https://api.airtable.com/v0";
+  // Column names must match the table exactly; typecast lets "Submitted at" be a date or a text field.
+  const fields = { "First name": v.first, "Last name": v.last, Email: v.email, Message: v.message, "Submitted at": new Date().toISOString() };
+  try {
+    const res = await fetch(`${api}/${encodeURIComponent(base)}/${encodeURIComponent(table)}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ records: [{ fields }], typecast: true }),
+      signal: AbortSignal.timeout(8_000),
+    });
+    // Airtable explains a rejected row (e.g. UNKNOWN_FIELD_NAME) in the body; keep it for the logs.
+    const detail = res.ok ? `HTTP ${res.status}` : `HTTP ${res.status} ${(await res.text().catch(() => "")).slice(0, 200)}`;
+    return { destination: "airtable", ok: res.ok, detail };
+  } catch (err) {
+    return { destination: "airtable", ok: false, detail: (err as Error).message };
   }
 }

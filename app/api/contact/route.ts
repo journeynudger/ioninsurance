@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { clean, validate } from "@/lib/contact";
-import { deliverByEmail, deliverToWebhook } from "@/lib/deliver";
+import { deliverByEmail, deliverToAirtable, deliverToWebhook } from "@/lib/deliver";
 
 /** POST /api/contact: the "Connect With Us" form. Validates, then hands the message to lib/deliver.ts. */
 
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
   const errors = validate(values);
   if (Object.keys(errors).length) return reply({ ok: false, errors }, 422);
 
-  const deliveries = (await Promise.all([deliverByEmail(values), deliverToWebhook(values)])).filter((d) => d !== null);
+  const deliveries = (await Promise.all([deliverToAirtable(values), deliverByEmail(values), deliverToWebhook(values)])).filter((d) => d !== null);
   for (const d of deliveries) console[d.ok ? "info" : "error"](`[contact] ${d.destination}: ${d.ok ? "ok" : "FAILED"} ${d.detail ?? ""}`);
 
   if (deliveries.some((d) => d.ok)) return reply({ ok: true });

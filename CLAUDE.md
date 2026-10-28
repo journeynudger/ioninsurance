@@ -45,10 +45,14 @@ being cancelled, so the form no longer touches WordPress or reCAPTCHA. It posts 
 - Spam: a hidden honeypot field and a 2-second minimum fill time. Spam gets a fake success and is never sent.
 - `lib/deliver.ts` sends each message to whichever destinations are set in Vercel (see `.env.example`), with an
   8-second timeout each:
-  - **`FORMS_WEBHOOK_URL`** (recommended: a Formspree form endpoint). Formspree stores every submission in its
-    dashboard and emails it to the addresses set there; no DNS changes. The body is JSON (`first`, `last`, `email`,
-    `message`, `form`, `submittedAt`) with `Accept: application/json`. Works with Zapier or any receiver too;
-    `FORMS_WEBHOOK_SECRET` adds an HMAC-SHA256 signature.
+  - **Airtable (recommended; Valerin already pays for it):** `AIRTABLE_TOKEN` + `AIRTABLE_BASE_ID` +
+    `AIRTABLE_TABLE`. Each message becomes a row with the columns `First name`, `Last name`, `Email`, `Message`,
+    `Submitted at` (names must match exactly; `typecast` lets "Submitted at" be a date or text field). An Airtable
+    automation ("When a record is created → Send email") emails it to ION. The token should be a personal access
+    token with only `data.records:write` on that one base. A rejected row is logged with Airtable's reason
+    (e.g. `UNKNOWN_FIELD_NAME`) and the visitor gets the 503 message below.
+  - `FORMS_WEBHOOK_URL`: JSON (`first`, `last`, `email`, `message`, `form`, `submittedAt`, `Accept:
+    application/json`) to Formspree, Zapier or any receiver; `FORMS_WEBHOOK_SECRET` adds an HMAC-SHA256 signature.
   - `RESEND_API_KEY` + `FORMS_EMAIL_FROM` + `FORMS_EMAIL_TO`: direct email (Reply-To is the visitor). Needs the
     sending domain verified in Resend (DNS records).
 - **With no destination set, every message returns 503 and the visitor sees "Your message didn't send … email us
@@ -91,11 +95,12 @@ Not carried over: the six-slide hero slider (its captions are now the line cards
    labelled "Louisiana"?
 9. **Font licence:** the site uses Maison Neue Medium (© Timo Gaessner / 123buero), served from ION's own
    uploads. Confirm ION's licence covers web use on the new host.
-10. **Form inbox:** who should receive website messages, and who gets the Formspree (or Resend) login?
+10. **Form inbox:** messages are stored in Valerin's Airtable. Who at ION should the automation email, and is
+   ION fine with Valerin holding the messages?
 
 ## Checks
 
 `npm run typecheck`, `npm run lint`, `npm run build`. A Playwright sweep (in the session scratchpad, not the
 repo) checks overflow, clipping, contrast, headings and alt text at 8 widths. `npm run test:ui` (with
 `next start -p 3141` running) checks the menu, slider, tabs, FAQ and products accordion (19 checks). The form has an API test suite
-and a browser end-to-end suite, run against a local mock of Resend and the webhook: `npm run test:form` (builds first) (86 checks; needs ports 3141-3146 and 4999 free).
+and a browser end-to-end suite, run against a local mock of Airtable, Resend and the webhook: `npm run test:form` (builds first) (90 checks; needs ports 3141-3148 and 4999 free).

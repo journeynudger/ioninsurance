@@ -91,7 +91,19 @@ ok(r.status === 200 && r.json.dryRun === true, "FORMS_DRY_RUN=1 → 200 dryRun")
 r = await post(3145, { ...good, startedAt: old() });
 ok(r.status === 200 && r.ms >= 7_000 && r.ms < 12_000, `hanging webhook times out, email still lands (${r.ms} ms)`);
 
-// 8. concurrency: 20 parallel valid posts → 20 emails, no loss/dupes
+// 8. Airtable: one row per message, right columns, failure reported
+reset();
+r = await post(3147, { ...good, startedAt: old() });
+L = lines();
+ok(r.status === 200 && r.json.ok && L.length === 1, "Airtable only → 200, one request", JSON.stringify(r));
+ok(L[0]?.url === "/airtable/appTEST/Website%20Messages" && L[0].headers.authorization === "Bearer pat-test", "Airtable URL + token", L[0]?.url);
+const at = JSON.parse(L[0]?.body ?? "{}");
+const f = at.records?.[0]?.fields ?? {};
+ok(at.typecast === true && at.records.length === 1 && f["First name"] === "Ada" && f["Last name"] === "Lovelace" && f.Email === "ada@example.com" && f.Message === good.message && !Number.isNaN(Date.parse(f["Submitted at"])), "Airtable row fields", JSON.stringify(at));
+r = await post(3148, { ...good, startedAt: old() });
+ok(r.status === 503 && r.json.ok === false, "Airtable rejects → 503 (never pretends)", JSON.stringify(r));
+
+// 9. concurrency: 20 parallel valid posts → 20 emails, no loss/dupes
 reset();
 const rs = await Promise.all(Array.from({ length: 20 }, (_, i) => post(3142, { ...good, message: `msg ${i}`, startedAt: old() })));
 const got = lines().filter((x) => x.url === "/hook").map((x) => JSON.parse(x.body).message).sort();
