@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { clean, validate } from "@/lib/contact";
 import { deliverByEmail, deliverToWebhook } from "@/lib/deliver";
+import { submitToWordPress } from "@/lib/wordpress";
 
 /** POST /api/contact: the "Connect With Us" form. Validates, then hands the message to lib/deliver.ts. */
 
@@ -37,6 +38,9 @@ export async function POST(request: Request) {
   const values = clean(input);
   const errors = validate(values);
   if (Object.keys(errors).length) return reply({ ok: false, errors }, 422);
+
+  const wordpress = await submitToWordPress(values, typeof input.captcha === "string" ? input.captcha.slice(0, 4000) : "");
+  if (wordpress) return reply(wordpress, wordpress.status);
 
   const deliveries = (await Promise.all([deliverByEmail(values), deliverToWebhook(values)])).filter((d) => d !== null);
   for (const d of deliveries) console[d.ok ? "info" : "error"](`[contact] ${d.destination}: ${d.ok ? "ok" : "FAILED"} ${d.detail ?? ""}`);

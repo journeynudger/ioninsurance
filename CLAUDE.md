@@ -29,8 +29,12 @@ reCAPTCHA). It posts JSON to `app/api/contact/route.ts`:
   send … email us at info@ion.co.cr".** The form never pretends. Set the env vars before going live.
   `FORMS_DRY_RUN=1` accepts messages without sending them; use it only locally.
 
-Not bridged to the old Gravity Forms on purpose: its reCAPTCHA key only works on ioninsuranceinc.com, and
-once DNS moves, WordPress would need its own hostname.
+For the domain cutover, set `WORDPRESS_ORIGIN` to the retained WordPress HTTPS hostname and
+`NEXT_PUBLIC_FORMS_BACKEND=gravity`. This takes precedence over email/webhook delivery. The original
+Gravity Forms form 1 receives the same first name, last name, email and message fields, and checks the
+original reCAPTCHA token. Notifications and stored entries stay with the original form. The browser uses
+the original checkbox site key; its domain validation must stay enabled. `FORMS_MODE=validate` uses only
+Gravity Forms' validation endpoint, saving and emailing nothing; never set that on production.
 
 ## Where the content came from
 
