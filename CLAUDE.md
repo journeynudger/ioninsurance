@@ -37,24 +37,23 @@ Tuned on purpose, against live:
 
 ## The contact form
 
-"Connect With Us" appears on every page, as it did on the old site. **No Vercel env vars are needed.** By default
-it posts (through `app/api/contact/route.ts` and `lib/wordpress.ts`) to the existing Gravity Forms form 1, with the
-original reCAPTCHA checkbox, so ION keeps its current notification emails and stored entries.
+"Connect With Us" appears on every page. The old site used Gravity Forms on WordPress (Plesk); that hosting is
+being cancelled, so the form no longer touches WordPress or reCAPTCHA. It posts JSON to `app/api/contact/route.ts`:
 
-- WordPress must stay reachable at **`https://wp.ioninsuranceinc.com`** once `ioninsuranceinc.com` points at
-  Vercel. One-time setup, done when the DNS moves: an A record `wp` → `208.87.133.155` (the current Plesk
-  server), and in Plesk a domain alias `wp.ioninsuranceinc.com` with "Redirect with HTTP 301" OFF and a Let's
-  Encrypt certificate. Until then the form answers "Your message didn't send … email info@ion.co.cr".
-  Another hostname: set `WORDPRESS_ORIGIN`.
-- The reCAPTCHA key only works on ioninsuranceinc.com, so on a `*.vercel.app` preview the checkbox won't load.
-  Real submissions work only on the live domain (or after the key owner adds the preview host).
 - `lib/contact.ts` holds the rules (all four fields required, email format, length limits), shared by browser and
-  server. Spam: a hidden honeypot field and a 2-second minimum fill time; spam gets a fake success, nothing sent.
-- `FORMS_MODE=validate` uses only Gravity Forms' validation endpoint (saves and emails nothing); never in production.
-
-Alternative, if WordPress is retired: build with `NEXT_PUBLIC_FORMS_BACKEND=email` and set the Resend and/or webhook
-vars in `.env.example` (`lib/deliver.ts`, 8-second timeouts). With that mode and no destination, every message
-returns 503 and the visitor is told to email info@ion.co.cr; the form never pretends. `FORMS_DRY_RUN=1` is local only.
+  server so they can't disagree.
+- Spam: a hidden honeypot field and a 2-second minimum fill time. Spam gets a fake success and is never sent.
+- `lib/deliver.ts` sends each message to whichever destinations are set in Vercel (see `.env.example`), with an
+  8-second timeout each:
+  - **`FORMS_WEBHOOK_URL`** (recommended: a Formspree form endpoint). Formspree stores every submission in its
+    dashboard and emails it to the addresses set there; no DNS changes. The body is JSON (`first`, `last`, `email`,
+    `message`, `form`, `submittedAt`) with `Accept: application/json`. Works with Zapier or any receiver too;
+    `FORMS_WEBHOOK_SECRET` adds an HMAC-SHA256 signature.
+  - `RESEND_API_KEY` + `FORMS_EMAIL_FROM` + `FORMS_EMAIL_TO`: direct email (Reply-To is the visitor). Needs the
+    sending domain verified in Resend (DNS records).
+- **With no destination set, every message returns 503 and the visitor sees "Your message didn't send … email us
+  at info@ion.co.cr".** The form never pretends. `FORMS_DRY_RUN=1` accepts messages without sending; local only.
+- Env vars are read at request time: change them in Vercel and redeploy.
 
 ## Where the content came from
 
@@ -92,12 +91,11 @@ Not carried over: the six-slide hero slider (its captions are now the line cards
    labelled "Louisiana"?
 9. **Font licence:** the site uses Maison Neue Medium (© Timo Gaessner / 123buero), served from ION's own
    uploads. Confirm ION's licence covers web use on the new host.
-10. **WordPress hostname:** who manages the ioninsuranceinc.com DNS and the Plesk server? Whoever moves the DNS
-   to Vercel must add `wp.ioninsuranceinc.com` at the same time (see "The contact form").
+10. **Form inbox:** who should receive website messages, and who gets the Formspree (or Resend) login?
 
 ## Checks
 
 `npm run typecheck`, `npm run lint`, `npm run build`. A Playwright sweep (in the session scratchpad, not the
 repo) checks overflow, clipping, contrast, headings and alt text at 8 widths. `npm run test:ui` (with
 `next start -p 3141` running) checks the menu, slider, tabs, FAQ and products accordion (19 checks). The form has an API test suite
-and a browser end-to-end suite, run against a local mock of Resend and the webhook: `npm run test:form` (builds in email mode first) (86 checks; needs ports 3141-3146 and 4999 free).
+and a browser end-to-end suite, run against a local mock of Resend and the webhook: `npm run test:form` (builds first) (86 checks; needs ports 3141-3146 and 4999 free).

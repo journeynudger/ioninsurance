@@ -3,12 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { clean, LIMITS, validate, type ContactErrors, type ContactValues } from "@/lib/contact";
 import { contact } from "@/lib/content";
-import { mountCaptcha } from "@/components/recaptcha";
 
 type Status = "idle" | "sending" | "sent" | "failed";
 const EMPTY: ContactValues = { first: "", last: "", email: "", message: "" };
 const ORDER: (keyof ContactValues)[] = ["first", "last", "email", "message"];
-const USE_WORDPRESS = process.env.NEXT_PUBLIC_FORMS_BACKEND !== "email";
 
 export default function ContactForm({ id = "contact" }: { id?: string }) {
   const [values, setValues] = useState<ContactValues>(EMPTY);
@@ -19,15 +17,7 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
   const honeypot = useRef<HTMLInputElement>(null);
   const doneRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const captchaBox = useRef<HTMLDivElement>(null);
-  const captcha = useRef<ReturnType<typeof mountCaptcha> | null>(null);
   const [notice, setNotice] = useState("");
-
-  function prepareCaptcha() {
-    if (!USE_WORDPRESS || !captchaBox.current || captcha.current) return;
-    captcha.current = mountCaptcha(captchaBox.current);
-    void captcha.current.catch(() => { captcha.current = null; setNotice("CAPTCHA could not load. Please try again or email info@ion.co.cr."); });
-  }
 
   useEffect(() => {
     startedAt.current = Date.now();
@@ -60,21 +50,12 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
     setStatus("sending");
     setNotice("");
     try {
-      prepareCaptcha();
-      const widget = USE_WORDPRESS ? await captcha.current : null;
-      const token = widget?.token();
-      if (USE_WORDPRESS && !token) {
-        setNotice("Please complete the CAPTCHA before sending.");
-        setStatus("idle");
-        return;
-      }
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...v, captcha: token, website: honeypot.current?.value ?? "", startedAt: startedAt.current }),
+        body: JSON.stringify({ ...v, website: honeypot.current?.value ?? "", startedAt: startedAt.current }),
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; errors?: ContactErrors; message?: string };
-      widget?.reset();
       if (res.ok && data.ok) {
         setStatus("sent");
         setValues(EMPTY);
@@ -96,7 +77,7 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
       <div ref={doneRef} tabIndex={-1} role="status" className="rounded-[25px] bg-field px-8 py-10 text-center outline-none">
         <p className="text-[24px] leading-tight text-ink">Message sent</p>
         <p className="mt-3 text-[18px] leading-[1.5]">{contact.success}</p>
-        <button type="button" onClick={() => { setStatus("idle"); setTried(false); setErrors({}); setNotice(""); captcha.current = null; startedAt.current = Date.now(); }} className="mt-5 text-[16px] text-heading underline underline-offset-4">
+        <button type="button" onClick={() => { setStatus("idle"); setTried(false); setErrors({}); setNotice(""); startedAt.current = Date.now(); }} className="mt-5 text-[16px] text-heading underline underline-offset-4">
           Send another message
         </button>
       </div>
@@ -118,7 +99,7 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
     errors[name] ? <p id={`${id}-${name}-error`} className="mt-1 px-5 text-[14px] leading-snug text-error">{errors[name]}</p> : null;
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} onFocusCapture={prepareCaptcha} noValidate aria-label={contact.title} className="grid gap-x-3 gap-y-[14px] sm:grid-cols-2">
+    <form ref={formRef} onSubmit={onSubmit} noValidate aria-label={contact.title} className="grid gap-x-3 gap-y-[14px] sm:grid-cols-2">
       <div>
         <label htmlFor={`${id}-first`} className="sr-only">{contact.fields.first}</label>
         <input {...field("first")} type="text" autoComplete="given-name" maxLength={LIMITS.name} />
@@ -145,7 +126,6 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
         <input ref={honeypot} id={`${id}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
       </div>
       <div className="mt-6 flex flex-col items-center gap-4 sm:col-span-2">
-        {USE_WORDPRESS && <div ref={captchaBox} className="max-w-full self-start overflow-x-auto" />}
         <button type="submit" disabled={status === "sending"} className="rounded-[25px] bg-button px-[60px] py-3 text-[17px] font-bold leading-[17px] tracking-[0.5px] text-heading transition-colors hover:bg-[#cfcfcf] disabled:cursor-wait disabled:opacity-70">
           {status === "sending" ? "Sending…" : contact.submit}
         </button>

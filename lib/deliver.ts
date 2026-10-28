@@ -38,7 +38,8 @@ export async function deliverToWebhook(v: ContactValues): Promise<Delivery | nul
   const url = process.env.FORMS_WEBHOOK_URL;
   if (!url) return null;
   const body = JSON.stringify({ form: "contact", submittedAt: new Date().toISOString(), ...v });
-  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  // Accept JSON so form services such as Formspree answer with a status instead of a redirect page.
+  const headers: Record<string, string> = { "Content-Type": "application/json", Accept: "application/json" };
   const secret = process.env.FORMS_WEBHOOK_SECRET;
   if (secret) headers["X-Signature"] = "sha256=" + crypto.createHmac("sha256", secret).update(body).digest("hex");
   try {
