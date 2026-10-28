@@ -93,10 +93,10 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
 
   if (status === "sent") {
     return (
-      <div ref={doneRef} tabIndex={-1} role="status" className="rounded-2xl border border-rule bg-white p-8 text-lg leading-relaxed text-ink outline-none">
-        <p className="font-serif text-2xl text-navy-ink">Message sent</p>
-        <p className="mt-2 text-ink-soft">{contact.success}</p>
-        <button type="button" onClick={() => { setStatus("idle"); setTried(false); setErrors({}); setNotice(""); captcha.current = null; startedAt.current = Date.now(); }} className="mt-6 font-medium text-navy underline underline-offset-4 hover:text-navy-deep">
+      <div ref={doneRef} tabIndex={-1} role="status" className="rounded-[25px] bg-field px-8 py-10 text-center outline-none">
+        <p className="text-[24px] leading-tight text-ink">Message sent</p>
+        <p className="mt-3 text-[18px] leading-[1.5]">{contact.success}</p>
+        <button type="button" onClick={() => { setStatus("idle"); setTried(false); setErrors({}); setNotice(""); captcha.current = null; startedAt.current = Date.now(); }} className="mt-5 text-[16px] text-heading underline underline-offset-4">
           Send another message
         </button>
       </div>
@@ -108,35 +108,35 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
     name,
     value: values[name],
     required: true,
+    placeholder: contact.placeholders[name],
     "aria-invalid": errors[name] ? true : undefined,
     "aria-describedby": errors[name] ? `${id}-${name}-error` : undefined,
     onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => update(name, e.target.value),
-    className: `mt-2 block w-full rounded-lg border bg-white px-4 py-3 text-base text-ink shadow-sm transition-colors placeholder:text-ink-soft/70 focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/25 ${errors[name] ? "border-error" : "border-rule"}`,
+    className: "field",
   });
   const error = (name: keyof ContactValues) =>
-    errors[name] ? <p id={`${id}-${name}-error`} className="mt-1.5 text-sm text-error">{errors[name]}</p> : null;
-  const label = "block text-sm font-medium text-ink";
+    errors[name] ? <p id={`${id}-${name}-error`} className="mt-1 px-5 text-[14px] leading-snug text-error">{errors[name]}</p> : null;
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} onFocusCapture={prepareCaptcha} noValidate aria-label={contact.title} className="grid gap-5 rounded-2xl border border-rule bg-white p-5 shadow-sm sm:grid-cols-2 sm:p-8">
+    <form ref={formRef} onSubmit={onSubmit} onFocusCapture={prepareCaptcha} noValidate aria-label={contact.title} className="grid gap-x-3 gap-y-[14px] sm:grid-cols-2">
       <div>
-        <label htmlFor={`${id}-first`} className={label}>{contact.fields.first}</label>
+        <label htmlFor={`${id}-first`} className="sr-only">{contact.fields.first}</label>
         <input {...field("first")} type="text" autoComplete="given-name" maxLength={LIMITS.name} />
         {error("first")}
       </div>
       <div>
-        <label htmlFor={`${id}-last`} className={label}>{contact.fields.last}</label>
+        <label htmlFor={`${id}-last`} className="sr-only">{contact.fields.last}</label>
         <input {...field("last")} type="text" autoComplete="family-name" maxLength={LIMITS.name} />
         {error("last")}
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor={`${id}-email`} className={label}>{contact.fields.email}</label>
+        <label htmlFor={`${id}-email`} className="sr-only">{contact.fields.email}</label>
         <input {...field("email")} type="email" autoComplete="email" inputMode="email" maxLength={LIMITS.email} />
         {error("email")}
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor={`${id}-message`} className={label}>{contact.fields.message}</label>
-        <textarea {...field("message")} rows={5} maxLength={LIMITS.message} />
+        <label htmlFor={`${id}-message`} className="sr-only">{contact.fields.message}</label>
+        <textarea {...field("message")} rows={7} maxLength={LIMITS.message} className="field min-h-[190px]" />
         {error("message")}
       </div>
       {/* Honeypot: hidden from people and screen readers; bots fill it in. */}
@@ -144,12 +144,12 @@ export default function ContactForm({ id = "contact" }: { id?: string }) {
         <label htmlFor={`${id}-website`}>Website</label>
         <input ref={honeypot} id={`${id}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
       </div>
-      <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
-        {USE_WORDPRESS && <div ref={captchaBox} className="w-full overflow-x-auto" />}
-        <button type="submit" disabled={status === "sending"} className="rounded-full bg-navy px-7 py-3 font-medium text-white transition-colors hover:bg-navy-deep disabled:cursor-wait disabled:opacity-70">
+      <div className="mt-6 flex flex-col items-center gap-4 sm:col-span-2">
+        {USE_WORDPRESS && <div ref={captchaBox} className="max-w-full self-start overflow-x-auto" />}
+        <button type="submit" disabled={status === "sending"} className="rounded-[25px] bg-button px-[60px] py-3 text-[17px] font-bold leading-[17px] tracking-[0.5px] text-heading transition-colors hover:bg-[#cfcfcf] disabled:cursor-wait disabled:opacity-70">
           {status === "sending" ? "Sending…" : contact.submit}
         </button>
-        <p role="alert" className="text-sm text-error">
+        <p role="alert" className="text-center text-[14px] leading-snug text-error">
           {notice || (status === "failed" ? contact.failure : "")}
         </p>
       </div>

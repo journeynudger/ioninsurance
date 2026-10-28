@@ -18,8 +18,8 @@ export interface Site {
 
 export interface Partner { name: string; logo: string; url?: string; blurb?: string }
 export interface Home {
-  hero: { eyebrow: string; title: string; lede: string };
-  linesIntro: { title: string; lede: string };
+  group: { title: string; text: string };
+  tabOrder: string[];
   partners: { title: string; featured: Partner[]; more: Partner[] };
   faq: { title: string; items: { q: string; a: string }[] };
 }
@@ -34,6 +34,7 @@ export interface Line {
   coverage: { name: string; text: string }[];
   closing: string;
   image: Img;
+  slide: { title: string; image: Img };
 }
 
 export interface About {
@@ -57,8 +58,8 @@ export interface LegalPage { title: string; lede: string; sections: LegalSection
 
 export interface Contact {
   title: string;
-  lede: string;
   fields: { first: string; last: string; email: string; message: string };
+  placeholders: { first: string; last: string; email: string; message: string };
   submit: string;
   success: string;
   failure: string;
@@ -68,6 +69,15 @@ export interface Contact {
 export const site: Site = siteData satisfies Site;
 export const home: Home = homeData satisfies Home;
 export const lines: Line[] = productsData.lines satisfies Line[];
+
+// The home page's numbered tabs use their own order. An unknown id fails the build.
+export function getTabLines(): Line[] {
+  return home.tabOrder.map((id) => {
+    const line = lines.find((l) => l.id === id);
+    if (!line) throw new Error(`home.json tabOrder names unknown line "${id}"`);
+    return line;
+  });
+}
 export const about: About = aboutData satisfies About;
 export const financials: { title: string; reports: Report[] } = financialsData satisfies { title: string; reports: Report[] };
 export const privacy: LegalPage = legalData.privacy satisfies LegalPage;

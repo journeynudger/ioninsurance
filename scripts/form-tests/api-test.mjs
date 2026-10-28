@@ -4,7 +4,7 @@ const LOG = process.argv[2];
 const good = { first: "Ada", last: "Lovelace", email: "ada@example.com", message: "Marine hull cover for two vessels." };
 const old = () => Date.now() - 10_000;
 let pass = 0, fail = 0;
-const ok = (cond, name, extra = "") => { cond ? pass++ : fail++; console.log(`${cond ? "PASS" : "FAIL"} ${name} ${cond ? "" : extra}`); };
+const ok = (cond, name, extra = "") => { if (cond) pass++; else fail++; console.log(`${cond ? "PASS" : "FAIL"} ${name} ${cond ? "" : extra}`); };
 const post = async (port, body, headers = { "content-type": "application/json" }) => {
   const t = Date.now();
   const r = await fetch(`http://localhost:${port}/api/contact`, { method: "POST", headers, body: typeof body === "string" ? body : JSON.stringify(body) });
@@ -33,7 +33,6 @@ ok(h.first === "Ada" && h.last === "Lovelace" && h.email === "ada@example.com" &
 // 2. HTML injection is escaped in the email
 reset();
 await post(3142, { ...good, first: "<script>x</script>", message: `<img src=x onerror=alert(1)> & "q"`, startedAt: old() });
-const inj = JSON.parse(lines()[0]?.body ?? lines()[1]?.body ?? "{}");
 const em = lines().map((x) => JSON.parse(x.body)).find((b) => b.html);
 ok(em && !em.html.includes("<script>") && !em.html.includes("<img") && em.html.includes("&#60;script&#62;"), "HTML escaped in email", em?.html);
 

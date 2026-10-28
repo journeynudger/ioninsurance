@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import ContactSection from "@/components/ContactSection";
-import PageHeader from "@/components/PageHeader";
+import LineSlider from "@/components/LineSlider";
+import OpenFromHash from "@/components/OpenFromHash";
 import { lines } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -13,48 +14,47 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <>
-      <PageHeader eyebrow="ION Insurance" title="Products" lede="Commercial Property, Financial Lines, Specialty, Marine, Aviation and Surety." />
-      <nav aria-label="Products" className="border-b border-rule bg-white">
-        <ul className="mx-auto flex max-w-6xl flex-wrap gap-2 px-4 py-4 sm:px-6">
+      <LineSlider />
+      <OpenFromHash />
+      <section className="wrap pt-16 md:pt-20">
+        <h1 className="text-[45px] leading-none text-heading md:pl-[67px] md:text-[70px]">Products</h1>
+        <div className="mt-10 border-b-[3px] border-[#444] md:mt-14">
           {lines.map((line) => (
-            <li key={line.id}>
-              <a href={`#${line.id}`} className="block rounded-full border border-rule px-4 py-2 text-sm font-medium text-navy transition-colors hover:border-navy hover:bg-mist">
-                {line.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      {lines.map((line, i) => (
-        <section key={line.id} id={line.id} aria-labelledby={`${line.id}-title`} className={i % 2 ? "bg-mist" : "bg-white"}>
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[5fr_7fr] lg:gap-16">
-            <div className={i % 2 ? "lg:order-last" : ""}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:sticky lg:top-28 lg:aspect-square">
-                <Image src={line.image.src} alt={line.image.alt} fill sizes="(min-width: 1024px) 26rem, 100vw" className="object-cover" />
-              </div>
-            </div>
-            <div>
-              <p className="eyebrow text-navy">{line.name}</p>
-              <h2 id={`${line.id}-title`} className="mt-3 font-serif text-3xl leading-tight text-navy-ink sm:text-4xl">{line.heading}</h2>
-              <p className="mt-5 text-lg leading-relaxed text-ink-soft">{line.intro}</p>
-              <h3 className="mt-10 eyebrow text-ink">Insurance coverage</h3>
-              <dl className="mt-4 divide-y divide-rule border-y border-rule">
-                {line.coverage.map((c) => (
-                  <div key={c.name} className="py-4">
-                    <dt className="font-semibold text-navy-ink">{c.name}</dt>
-                    <dd className="mt-1 leading-relaxed text-ink-soft">{c.text}</dd>
+            <details key={line.id} id={line.id} name="product" className="group scroll-mt-4 border-t-[3px] border-[#444]">
+              <summary className="flex cursor-pointer items-center gap-4 px-[25px] py-[21px] text-[20px] leading-tight text-black transition-colors hover:bg-[#f2f2f2] group-open:bg-black group-open:text-white group-open:hover:bg-black">
+                <h2>{line.name}</h2>
+                <span aria-hidden="true" className="text-[22px] font-light leading-none group-open:hidden">+</span>
+                <span aria-hidden="true" className="hidden text-[18px] leading-none group-open:inline">×</span>
+              </summary>
+              <div className="pb-12 pt-6">
+                <h3 className="pb-[10px] text-[26px] leading-[1.1] text-ink md:text-[30px] md:leading-[30px]">{line.heading}</h3>
+                <p className="text-[18px] leading-[26px] md:text-[20px]">{line.intro}</p>
+                <h4 className="mt-6 pb-[10px] text-[24px] leading-none text-[#696666]">Insurance Coverage</h4>
+                <ul className="list-disc space-y-0 pl-[18px] text-[16px] leading-[26px] md:text-[18px]">
+                  {line.coverage.map((c) => (
+                    <li key={c.name}>
+                      <strong className="font-bold text-ink">{c.name}:</strong> {c.text}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-12 grid gap-8 md:grid-cols-2">
+                  <div className="relative aspect-square">
+                    <Image src={line.image.src} alt={line.image.alt} fill sizes="(min-width: 768px) 497px, 80vw" className="object-cover" />
                   </div>
-                ))}
-              </dl>
-              <p className="mt-8 leading-relaxed text-ink">{line.closing}</p>
-              <Link href="/connect" className="mt-8 inline-block rounded-full bg-navy px-6 py-3 font-medium text-white transition-colors hover:bg-navy-deep">
-                Ask about {line.name}
-              </Link>
-            </div>
-          </div>
-        </section>
-      ))}
+                  <div>
+                    <p className="pb-[10px] text-[26px] leading-[1.1] text-ink md:text-[30px] md:leading-[30px]">{line.name}</p>
+                    <p className="pb-[10px] text-[24px] leading-none text-[#696666]">Insurance Coverage</p>
+                    <p className="text-[18px] leading-[26px] md:text-[20px]">{line.closing}</p>
+                    <Link href="/connect" className="mt-3 inline-block text-[16px] text-ink hover:underline">
+                      Connect<span className="sr-only"> about {line.name}</span> <span aria-hidden="true" className="ml-3">›</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
       <ContactSection />
     </>
   );

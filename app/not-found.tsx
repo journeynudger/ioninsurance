@@ -2,11 +2,12 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="mx-auto max-w-3xl px-4 py-24 text-center sm:px-6 sm:py-32">
-      <p className="eyebrow text-navy">404</p>
-      <h1 className="mt-4 font-serif text-4xl text-navy-ink sm:text-5xl">Page not found</h1>
-      <p className="mt-5 text-lg text-ink-soft">That page doesn’t exist, or it has moved.</p>
-      <Link href="/" className="mt-10 inline-block rounded-full bg-navy px-6 py-3 font-medium text-white hover:bg-navy-deep">Go to the home page</Link>
+    <section className="wrap py-24 text-center md:py-32">
+      <h1 className="text-[45px] leading-none text-heading md:text-[70px]">Page not found</h1>
+      <p className="mt-6 text-[18px] md:text-[20px]">That page doesn’t exist, or it has moved.</p>
+      <Link href="/" className="mt-10 inline-block rounded-[25px] bg-button px-[60px] py-3 text-[17px] font-bold tracking-[0.5px] text-heading hover:bg-[#cfcfcf]">
+        Go to the home page
+      </Link>
     </section>
   );
 }

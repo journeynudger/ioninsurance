@@ -3,7 +3,7 @@ import fs from "node:fs";
 import { chromium } from "playwright-core";
 const LOG = process.argv[2], OUT = process.argv[3];
 let pass = 0, fail = 0;
-const ok = (c, n, x = "") => { c ? pass++ : fail++; console.log(`${c ? "PASS" : "FAIL"} ${n} ${c ? "" : x}`); };
+const ok = (c, n, x = "") => { if (c) pass++; else fail++; console.log(`${c ? "PASS" : "FAIL"} ${n} ${c ? "" : x}`); };
 const hooks = () => fs.readFileSync(LOG, "utf8").trim().split("\n").filter(Boolean).map(JSON.parse).filter((x) => x.url === "/hook");
 const b = await chromium.launch();
 
@@ -14,7 +14,7 @@ for (const [w, path] of [[375, "/connect"], [1280, "/connect"], [1280, "/"], [12
   const f = p.locator('form[aria-label="Connect With Us"]');
   const tag = `${w} ${path}`;
   // empty submit
-  await f.getByRole("button", { name: "Send message" }).click();
+  await f.getByRole("button", { name: "Submit" }).click();
   ok(await f.locator('[aria-invalid="true"]').count() === 4, `${tag} empty submit marks 4 fields invalid`);
   ok(await p.evaluate(() => document.activeElement?.getAttribute("name")) === "first", `${tag} focus moves to first error`);
   ok(await f.getByText("Enter your first name.").isVisible(), `${tag} error text visible`);
@@ -25,14 +25,14 @@ for (const [w, path] of [[375, "/connect"], [1280, "/connect"], [1280, "/"], [12
   ok(await f.locator('[name="first"]').getAttribute("aria-invalid") === null, `${tag} error clears once fixed`);
   await f.getByLabel("Last name").fill("Hopper");
   await f.getByLabel("Email").fill("grace@");
-  await f.getByRole("button", { name: "Send message" }).click();
+  await f.getByRole("button", { name: "Submit" }).click();
   ok(await f.getByText("Enter an email address like name@example.com.").isVisible(), `${tag} bad email caught in browser`);
   ok(hooks().length === 0, `${tag} nothing sent while invalid`);
   await f.getByLabel("Email").fill("grace@example.com");
   await f.getByLabel(/type of insurance/).fill("Aviation hull and liability.");
   await p.waitForTimeout(2100); // a person takes longer than the 2s trap
   // double click should send once
-  const btn = f.getByRole("button", { name: "Send message" });
+  const btn = f.getByRole("button", { name: "Submit" });
   await btn.dblclick();
   await p.getByText("Message sent").waitFor({ timeout: 10_000 });
   ok(await p.getByText("Thanks for contacting us!").isVisible(), `${tag} success message shown`);
@@ -57,7 +57,7 @@ for (const [w, path] of [[375, "/connect"], [1280, "/connect"], [1280, "/"], [12
   await p.keyboard.type("Turing"); await p.keyboard.press("Tab");
   await p.keyboard.type("alan@example.com"); await p.keyboard.press("Tab");
   await p.keyboard.type("Surety bonds."); await p.keyboard.press("Tab");
-  ok(await p.evaluate(() => document.activeElement?.textContent) === "Send message", "tab order reaches submit, skipping honeypot");
+  ok(await p.evaluate(() => document.activeElement?.textContent) === "Submit", "tab order reaches submit, skipping honeypot");
   await p.waitForTimeout(2100);
   await p.keyboard.press("Enter");
   await p.getByText("didn’t send").waitFor({ timeout: 15_000 });
@@ -76,13 +76,13 @@ for (const [w, path] of [[375, "/connect"], [1280, "/connect"], [1280, "/"], [12
   await f.getByLabel("First name").fill("Kat"); await f.getByLabel("Last name").fill("Johnson");
   await f.getByLabel("Email").fill("kat@example.com"); await f.getByLabel(/type of insurance/).fill("Specialty.");
   await p.waitForTimeout(2100);
-  await f.getByRole("button", { name: "Send message" }).click();
+  await f.getByRole("button", { name: "Submit" }).click();
   await p.getByText("didn’t send").waitFor({ timeout: 5_000 });
   ok(true, "offline submit shows the failure message");
-  ok(await f.getByRole("button", { name: "Send message" }).isEnabled(), "button re-enabled to retry");
+  ok(await f.getByRole("button", { name: "Submit" }).isEnabled(), "button re-enabled to retry");
   await p.unroute("**/api/contact");
   fs.writeFileSync(LOG, "");
-  await f.getByRole("button", { name: "Send message" }).click();
+  await f.getByRole("button", { name: "Submit" }).click();
   await p.getByText("Message sent").waitFor({ timeout: 10_000 });
   ok(hooks().length === 1, "retry after reconnect delivers once");
   await p.close();
@@ -97,7 +97,7 @@ for (const [w, path] of [[375, "/connect"], [1280, "/connect"], [1280, "/"], [12
   await p.fill('[name="website"]', "spam"); await f.getByLabel("First name").fill("Bot"); await f.getByLabel("Last name").fill("Bot");
   await f.getByLabel("Email").fill("bot@example.com"); await f.getByLabel(/type of insurance/).fill("buy now");
   await p.waitForTimeout(2100);
-  await f.getByRole("button", { name: "Send message" }).click();
+  await f.getByRole("button", { name: "Submit" }).click();
   await p.getByText("Message sent").waitFor();
   ok(hooks().length === 0, "honeypot bot sees success, nothing delivered");
   await p.close();

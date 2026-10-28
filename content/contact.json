@@ -1,14 +1,19 @@
 {
   "_source": "Gravity Forms form 1 on every page ('Connect With Us'): Name (First, Last), Email, message, all required, plus reCAPTCHA (replaced here by a honeypot and a timing check).",
   "title": "Connect With Us",
-  "lede": "Request a quote or ask a question. Every field is required.",
   "fields": {
     "first": "First name",
     "last": "Last name",
     "email": "Email",
     "message": "Please let us know what type of insurance you're looking for."
   },
-  "submit": "Send message",
+  "submit": "Submit",
   "success": "Thanks for contacting us! We will get in touch with you shortly.",
-  "failure": "Your message didn’t send. Please try again, or email us at info@ion.co.cr."
+  "failure": "Your message didn’t send. Please try again, or email us at info@ion.co.cr.",
+  "placeholders": {
+    "first": "First",
+    "last": "Last",
+    "email": "Email",
+    "message": "Please let us know what type of insurance you're looking for."
+  }
 }

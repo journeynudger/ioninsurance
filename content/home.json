@@ -1,38 +1,104 @@
 {
-  "_source": "Home page (/), 2026-10-27. Hero copy is the 'Our Group' paragraph; the six-slide slider became the lines grid.",
-  "hero": {
-    "eyebrow": "ION Insurance Company, Inc.",
-    "title": "Working to make the world more resilient.",
-    "lede": "ION Insurance Company stands at the forefront of the global insurance industry, specializing in reinsurance, insurance, and various insurance-based risk mitigation strategies. The aim of the ION is to enable society to thrive and progress, creating new opportunities and solutions for its clients."
+  "_source": "Home page (/), 2026-10-27. Text verbatim, laid out as on the live site: hero slider, Our Group, numbered tabs, partners, FAQ.",
+  "group": {
+    "title": "Our Group",
+    "text": "ION Insurance Company stands at the forefront of the global insurance industry, specializing in reinsurance, insurance, and various insurance-based risk mitigation strategies, working to make the world more resilient. The aim of the ION is to enable society to thrive and progress, creating new opportunities and solutions for its clients."
   },
-  "linesIntro": { "title": "What we cover", "lede": "Six lines of coverage: Commercial Property, Financial Lines, Specialty, Marine, Aviation and Surety." },
+  "tabOrder": [
+    "commercial-property",
+    "marine",
+    "aviation",
+    "financial-lines",
+    "surety",
+    "specialty"
+  ],
   "partners": {
     "title": "Our Partners",
-    "_note": "Blurbs are cut off with '...' on the live site too; full approved text is a client question.",
+    "_note": "Blurbs exactly as the live site shows them, cut off mid-sentence; full approved text is a client question.",
     "featured": [
-      { "name": "Inver Re", "logo": "/images/partners/inver-re.png", "url": "https://www.inverre.com/", "blurb": "Founded in 2021, Inver Re is an independent specialist risk strategy and reinsurance broker based in London, Bermuda, and the US." },
-      { "name": "Tysers Insurance Broker", "logo": "/images/partners/tysers.png", "url": "https://www.tysers.com/", "blurb": "Insurance for over 200 years. Founded in 1820, Tysers is a leading independent international Lloyd's broker." },
-      { "name": "CBC Insurance", "logo": "/images/partners/cbc.jpg", "url": "https://www.protectionre.com/", "blurb": "At CBC, we offer our clients independent advice and insurance solutions, whether they are private individuals, intermediaries or international…" },
-      { "name": "Miller Insurance", "logo": "/images/partners/miller.png", "url": "https://www.miller-insurance.com/", "blurb": "Miller is one of the leading specialist insurance and reinsurance brokers operating through Lloyd's, the London market and internationally." },
-      { "name": "Amwins", "logo": "/images/partners/amwins.png", "url": "https://www.amwins.com/", "blurb": "Amwins understands your clients' businesses aren't static — they're complex and evolutionary in nature, and require future-focused insurance solutions…" },
-      { "name": "Ensurance", "logo": "/images/partners/ensurance.png", "url": "https://ensurance.com/", "blurb": "Since 1998 ensurance.com has been the internet's number one place to find the best deal on car insurance and homeowners insurance…" }
+      {
+        "name": "Inver Re",
+        "logo": "/images/partners/inver-re.png",
+        "url": "https://www.inverre.com/",
+        "blurb": "Founded in 2021, Inver Re is an independent specialist risk strategy and reinsurance broker based in London, Bermuda, and the US. Inver Re brings a…"
+      },
+      {
+        "name": "Tysers Insurance Broker",
+        "logo": "/images/partners/tysers.png",
+        "url": "https://www.tysers.com/",
+        "blurb": "Insurance for over 200 years. Founded in 1820, Tysers is a leading independent international Lloyd's broker. Based at the heart of the world's premier insurance…"
+      },
+      {
+        "name": "CBC Insurance",
+        "logo": "/images/partners/cbc.jpg",
+        "url": "https://www.protectionre.com/",
+        "blurb": "At CBC, we offer our clients independent advice and insurance solutions, whether they are private individuals, intermediaries or international…"
+      },
+      {
+        "name": "Miller Insurance",
+        "logo": "/images/partners/miller.png",
+        "url": "https://www.miller-insurance.com/",
+        "blurb": "Miller is one of the leading specialist insurance and reinsurance brokers operating through Lloyd's, the London market and internationally…"
+      },
+      {
+        "name": "Amwins",
+        "logo": "/images/partners/amwins.png",
+        "url": "https://www.amwins.com/",
+        "blurb": "Amwins understands your clients' businesses aren't static — they're complex and evolutionary in nature, and require future-focused insurance solutions that keep…"
+      },
+      {
+        "name": "Ensurance",
+        "logo": "/images/partners/ensurance.png",
+        "url": "https://ensurance.com/",
+        "blurb": "Since 1998 ensurance.com has been the internet's number one place to find the best deal on car insurance and homeowners insurance while preparing you for…"
+      }
     ],
     "more": [
-      { "name": "LMIS London", "logo": "/images/partners/lmis-london.png" },
-      { "name": "MNK Re Ltd.", "logo": "/images/partners/mnk-re.jpg" },
-      { "name": "Kay International PLC", "logo": "/images/partners/kay-international.jpg" },
-      { "name": "Edward William Marine Insurance", "logo": "/images/partners/edward-william.png" },
-      { "name": "Visionary Insurance", "logo": "/images/partners/visionary.png" },
-      { "name": "Offshore Risk Management", "logo": "/images/partners/offshore-risk-management.jpg" }
+      {
+        "name": "LMIS London",
+        "logo": "/images/partners/lmis-london.png"
+      },
+      {
+        "name": "MNK Re Ltd.",
+        "logo": "/images/partners/mnk-re.jpg"
+      },
+      {
+        "name": "Kay International PLC",
+        "logo": "/images/partners/kay-international.jpg"
+      },
+      {
+        "name": "Edward William Marine Insurance",
+        "logo": "/images/partners/edward-william.png"
+      },
+      {
+        "name": "Visionary Insurance",
+        "logo": "/images/partners/visionary.png"
+      },
+      {
+        "name": "Offshore Risk Management",
+        "logo": "/images/partners/offshore-risk-management.jpg"
+      }
     ]
   },
   "faq": {
     "title": "Frequently Asked Questions",
     "items": [
-      { "q": "What types of insurance does ION Insurance offer?", "a": "Ion Insurance offers a diverse range of insurance coverages including Commercial Property, Marine, Aviation, Corporate, Liability, Surety, and Specialty insurance. These coverages cater to a wide array of business needs, ensuring comprehensive protection for various commercial ventures. Our extensive portfolio allows businesses to secure tailor-made insurance solutions under one roof." },
-      { "q": "Can ION Insurance Company, Inc. provide coverage for international operations?", "a": "Yes, ION Insurance can provide coverage for international operations, offering a global reach in our insurance services. Our international coverage is designed to meet the complex needs of businesses operating across borders, ensuring compliance with local and international insurance regulations. This capability makes us an ideal partner for companies with multinational presence or those looking to expand overseas." },
-      { "q": "What sets ION Insurance apart from other insurers?", "a": "What sets ION Insurance apart from other insurers is our specialized focus on sectors like Marine, Aviation, and Corporate insurance, combined with our ability to offer comprehensive solutions like Liability, Surety, and Specialty insurance. Our expertise in these niche areas, coupled with a commitment to personalized service and innovative risk management strategies, positions us as a leader in the insurance industry. Additionally, our flexibility in providing tailor-made insurance solutions helps us meet the unique needs of each client." },
-      { "q": "How can I request a quote for insurance coverage?", "a": "To request a quote for insurance coverage, you can use our contact form and tell us your specific insurance needs. Alternatively, you can contact our customer service team directly via email at info@ion.co.cr to discuss your requirements and receive a personalized insurance quote. ION Insurance also offers consultations with our insurance experts to ensure you get the right coverage for your business needs." }
+      {
+        "q": "What types of insurance does ION Insurance offer?",
+        "a": "Ion Insurance offers a diverse range of insurance coverages including Commercial Property, Marine, Aviation, Corporate, Liability, Surety, and Specialty insurance. These coverages cater to a wide array of business needs, ensuring comprehensive protection for various commercial ventures. Our extensive portfolio allows businesses to secure tailor-made insurance solutions under one roof."
+      },
+      {
+        "q": "Can ION Insurance Company, Inc. provide coverage for international operations?",
+        "a": "Yes, ION Insurance can provide coverage for international operations, offering a global reach in our insurance services. Our international coverage is designed to meet the complex needs of businesses operating across borders, ensuring compliance with local and international insurance regulations. This capability makes us an ideal partner for companies with multinational presence or those looking to expand overseas."
+      },
+      {
+        "q": "What sets ION Insurance apart from other insurers?",
+        "a": "What sets ION Insurance apart from other insurers is our specialized focus on sectors like Marine, Aviation, and Corporate insurance, combined with our ability to offer comprehensive solutions like Liability, Surety, and Specialty insurance. Our expertise in these niche areas, coupled with a commitment to personalized service and innovative risk management strategies, positions us as a leader in the insurance industry. Additionally, our flexibility in providing tailor-made insurance solutions helps us meet the unique needs of each client."
+      },
+      {
+        "q": "How can I request a quote for insurance coverage?",
+        "a": "To request a quote for insurance coverage, you can use our contact form and tell us your specific insurance needs. Alternatively, you can contact our customer service team directly via email at info@ion.co.cr to discuss your requirements and receive a personalized insurance quote. ION Insurance also offers consultations with our insurance experts to ensure you get the right coverage for your business needs."
+      }
     ]
   }
 }

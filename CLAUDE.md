@@ -10,9 +10,30 @@ Keys that start with `_` (`_source`, `_note`) are records only. Nothing renders 
 
 ## Design
 
-Navy `#2d3171` and charcoal `#343434` come from the ION logo files. Source Serif 4 for headings, Inter for
-body (next/font). The header uses the column mark from the logo (`public/images/ion-column.jpg`) with "ION /
-Insurance Company, Inc." as live text. Every text-on-color pair passes WCAG AA (checked by the sweep).
+The design copies the live Divi site (2026-10-27): same layout, type and colors, measured from the live pages.
+Only spacing, responsiveness and legibility were tuned.
+
+- **Type:** Maison Neue Medium, the site's only font, self-hosted from its own uploads (`app/fonts/`).
+  Body 14px/23.8 `#666`; headings `#474747`/`#333`; big titles 45–70px.
+- **Header:** `rgba(27,27,27,.7)` bar with the white ION logo and 23px bold links. It floats over the photo on
+  Home, Products and About (`OVERLAY` in `components/Header.tsx`) and sits on white elsewhere. Phones get a
+  hamburger menu, as on live.
+- **Hero slider** (`components/HeroSlider.tsx`): the six line photos with a caption band, 7px dots, 7s autoplay.
+  It pauses on hover or focus and stays still with reduced motion. About uses one fixed slide.
+- **Home:** Our Group (1/3 + 2/3), numbered line tabs over the photo (`components/LineTabs.tsx`, arrow keys
+  work; order from `home.json` `tabOrder`), partner columns with rules and "Read More ›", ruled FAQ, form.
+- **Products:** accordion rows (`details name="product"`, so one opens at a time). The open row is a black bar.
+  `/products#marine` opens that row.
+- **Form:** grey pill fields and a grey Submit pill, as on the Gravity Form; labels are screen-reader only.
+
+Tuned on purpose, against live:
+- Greys that failed WCAG AA were darkened: subtitles `#acacac` → `#767676`; footer "Company Inc."
+  `#ddd` → `#8a8a8a`; copyright line `#ddd` → `#767676`; in-text links `#2ea3f2` → `#1f6fae`.
+- The numbered tabs get a 30% dark wash and a text shadow so white text reads on bright photos.
+- On phones, live hides the partner blurbs behind a logo carousel. Here the cards stack, so nothing is lost,
+  and the six logo-only partners show as a row at every width.
+- Large vertical gaps (192px between About rows, the empty space above Submit) are tightened.
+- An "Or email info@ion.co.cr" line sits under each form.
 
 ## The contact form
 
@@ -70,11 +91,14 @@ Not carried over: the six-slide hero slider (its captions are now the line cards
    site has none). Send the revised date and confirm the newsletter wording.
 8. **Team:** is the team list current? The U.S. team photo's file is named "Louisiana". Should the photo be
    labelled "Louisiana"?
-9. **reCAPTCHA:** the new form uses a honeypot and a timing check instead. Add Cloudflare Turnstile or
+9. **Font licence:** the site uses Maison Neue Medium (© Timo Gaessner / 123buero), served from ION's own
+   uploads. Confirm ION's licence covers web use on the new host.
+10. **reCAPTCHA:** the new form uses a honeypot and a timing check instead. Add Cloudflare Turnstile or
    reCAPTCHA if spam gets through.
 
 ## Checks
 
 `npm run typecheck`, `npm run lint`, `npm run build`. A Playwright sweep (in the session scratchpad, not the
-repo) checks overflow, clipping, contrast, headings and alt text at 8 widths. The form has an API test suite
+repo) checks overflow, clipping, contrast, headings and alt text at 8 widths. `npm run test:ui` (with
+`next start -p 3141` running) checks the menu, slider, tabs, FAQ and products accordion (19 checks). The form has an API test suite
 and a browser end-to-end suite, run against a local mock of Resend and the webhook: `npm run build && npm run test:form` (86 checks; needs ports 3141-3146 and 4999 free).

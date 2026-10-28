@@ -1,5 +1,5 @@
 {
-  "_source": "Products page (/products) and the home page's six tabs and slider taglines, 2026-10-27. Text verbatim.",
+  "_source": "Products page (/products), the home page's numbered tabs (summary) and the hero slider (slide title, tagline, image), 2026-10-27. Text verbatim.",
   "lines": [
     {
       "id": "commercial-property",
@@ -44,6 +44,15 @@
         "width": 1400,
         "height": 1400,
         "alt": "A commercial building with roll-up loading doors"
+      },
+      "slide": {
+        "title": "Commercial Property",
+        "image": {
+          "src": "/images/slides/commercial-property.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "Tower cranes over a building under construction at sunset"
+        }
       }
     },
     {
@@ -81,6 +90,15 @@
         "width": 1400,
         "height": 1400,
         "alt": "A judge's gavel on a desk beside a signed document"
+      },
+      "slide": {
+        "title": "Financial Lines",
+        "image": {
+          "src": "/images/slides/financial-lines.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "A modern glass office building"
+        }
       }
     },
     {
@@ -118,6 +136,15 @@
         "width": 1400,
         "height": 1400,
         "alt": "A hand touching a screen of connected digital icons"
+      },
+      "slide": {
+        "title": "Specialty Insurance",
+        "image": {
+          "src": "/images/slides/specialty.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "A packed football stadium at sunset"
+        }
       }
     },
     {
@@ -155,6 +182,15 @@
         "width": 1400,
         "height": 1400,
         "alt": "A white yacht moored in clear blue water"
+      },
+      "slide": {
+        "title": "Marine Insurance",
+        "image": {
+          "src": "/images/slides/marine.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "A white motor yacht on clear turquoise water"
+        }
       }
     },
     {
@@ -192,6 +228,15 @@
         "width": 1400,
         "height": 1400,
         "alt": "A passenger jet parked inside a hangar"
+      },
+      "slide": {
+        "title": "Aviation Insurance",
+        "image": {
+          "src": "/images/slides/aviation.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "A passenger jet flying above the clouds"
+        }
       }
     },
     {
@@ -225,6 +270,15 @@
         "width": 1400,
         "height": 1400,
         "alt": "Builders in hard hats on a construction site"
+      },
+      "slide": {
+        "title": "Surety Insurance",
+        "image": {
+          "src": "/images/slides/surety.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "An empty boardroom with floor-to-ceiling windows"
+        }
       }
     }
   ]
