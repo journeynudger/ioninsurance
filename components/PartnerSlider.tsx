@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import type { Partner } from "@/lib/content";
 import { useCarousel } from "./useCarousel";
-import { SliderPause } from "./SliderControls";
+import { SliderPause, PartnerArrows } from "./SliderControls";
 
 export default function PartnerSlider({ partners }: { partners: Partner[] }) {
   const pages = Array.from({ length: Math.ceil(partners.length / 3) }, (_, i) => partners.slice(i * 3, i * 3 + 3));
@@ -37,12 +37,13 @@ export default function PartnerSlider({ partners }: { partners: Partner[] }) {
       }, 150);
     }}>
       {pages.map((page, i) => <div key={page[0].name} className="partner-slider__page" role="group" aria-roledescription="slide" aria-label={`${i + 1} of ${pages.length}`}>
-        {page.map(partner => <div key={partner.name} className="partner-slider__logo"><Image src={partner.logo} alt={partner.name} fill sizes="(max-width: 980px) 25vw, 330px" className="object-contain" /></div>)}
+        {page.map(partner => <a key={partner.name} className="partner-slider__logo" href={partner.url} target="_blank" rel="noopener noreferrer" aria-label={`${partner.name} (opens in a new tab)`}><Image src={partner.logo} alt={partner.name} fill sizes="(max-width: 980px) 25vw, 330px" className="object-contain" /></a>)}
       </div>)}
     </div>
     <div className="partner-slider__dots">
       {pages.map((page, i) => <button key={page[0].name} type="button" onClick={() => select(i)} aria-label={`Show partners ${i * 3 + 1} to ${Math.min(i * 3 + 3, partners.length)}`} aria-current={index === i ? "true" : undefined}><span /></button>)}
     </div>
+    <PartnerArrows previous={() => select(index - 1)} next={() => select(index + 1)} />
     <SliderPause paused={paused} toggle={() => setPaused(!paused)} />
   </section>;
 }

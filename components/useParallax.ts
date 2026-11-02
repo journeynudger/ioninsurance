@@ -21,7 +21,7 @@ export function useParallax(ref: RefObject<HTMLElement | null>, hero = false) {
       if (hero) element.style.setProperty("--image-shift", `${Math.max(0, -bounds.top * 0.22)}px`);
       else {
         const progress = (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height);
-        element.style.setProperty("--image-position", `${Math.max(0, Math.min(100, progress * 100))}%`);
+        element.style.setProperty("--image-shift", `${(Math.max(0, Math.min(1, progress)) - 0.5) * bounds.height * 0.24}px`);
       }
     };
     const requestUpdate = () => { if (!frame) frame = requestAnimationFrame(update); };

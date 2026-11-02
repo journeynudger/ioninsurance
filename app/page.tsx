@@ -22,7 +22,7 @@ export default function HomePage() {
       <section aria-labelledby="partners-title" className="wrap pb-16 pt-20 min-[981px]:pt-32">
         <h2 id="partners-title" className="pb-[10px] text-center text-[40px] leading-[1.1] text-heading min-[981px]:text-[45px]">{partners.title}</h2>
         <hr className="mt-8 border-t-2 border-rule" />
-        <PartnerGrid partners={partners.featured} />
+        <PartnerGrid partners={[...partners.featured, ...partners.more]} />
         <PartnerSlider partners={[...partners.more, partners.featured[0], partners.featured[2], partners.featured[1], ...partners.featured.slice(3)]} />
       </section>
 

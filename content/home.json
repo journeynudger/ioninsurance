@@ -14,7 +14,7 @@
   ],
   "partners": {
     "title": "Our Partners",
-    "_note": "Blurbs exactly as the live site shows them, cut off mid-sentence; full approved text is a client question.",
+    "_note": "Featured descriptions preserved from the original Ion Insurance Inc. site. Additional descriptions summarize the partner profiles on ion.co.cr and Offshore Risk Management’s official website. All twelve partners were present on the original Inc. site.",
     "featured": [
       {
         "name": "Inver Re",
@@ -37,7 +37,7 @@
       {
         "name": "CBC Insurance",
         "logo": "/images/partners/cbc.jpg",
-        "url": "https://www.protectionre.com/",
+        "url": "https://cbcinsurance.co.uk/",
         "blurb": "At CBC, we offer our clients independent advice and insurance solutions, whether they are private individuals, intermediaries or international…",
         "logoWidth": 250,
         "logoHeight": 279,
@@ -74,27 +74,57 @@
     "more": [
       {
         "name": "LMIS London",
-        "logo": "/images/partners/lmis-london.png"
+        "logo": "/images/partners/lmis-london.png",
+        "url": "https://london-marine.co.uk/",
+        "blurb": "London Marine Insurance Services is an independent Lloyd's broker, working with clients in the marine insurance market.",
+        "logoWidth": 350,
+        "logoHeight": 100,
+        "displayWidth": 240
       },
       {
         "name": "MNK Re Ltd.",
-        "logo": "/images/partners/mnk-re.jpg"
+        "logo": "/images/partners/mnk-re.jpg",
+        "url": "https://mnkre.com/",
+        "blurb": "MNK Re is an independent specialist insurance and reinsurance broker operating in Lloyd's of London and international markets.",
+        "logoWidth": 176,
+        "logoHeight": 88,
+        "displayWidth": 176
       },
       {
         "name": "Kay International PLC",
-        "logo": "/images/partners/kay-international.jpg"
+        "logo": "/images/partners/kay-international.jpg",
+        "url": "https://www.kayint.co.uk/",
+        "blurb": "Kay International provides tailor-made insurance products for emerging and European markets, including ATE insurance and surety bonds.",
+        "logoWidth": 302,
+        "logoHeight": 167,
+        "displayWidth": 150
       },
       {
         "name": "Edward William Marine Insurance",
-        "logo": "/images/partners/edward-william.png"
+        "logo": "/images/partners/edward-william.png",
+        "url": "https://www.edwardwilliam.com/",
+        "blurb": "Edward William arranges marine insurance for a range of vessels, from bass boats and centre-console boats to larger craft.",
+        "logoWidth": 773,
+        "logoHeight": 150,
+        "displayWidth": 195
       },
       {
         "name": "Visionary Insurance",
-        "logo": "/images/partners/visionary.png"
+        "logo": "/images/partners/visionary.png",
+        "url": "https://www.visionaryins.com/",
+        "blurb": "Visionary Insurance Company Limited is an insurance and reinsurance company licensed in Labuan International Business and Financial Centre, Malaysia.",
+        "logoWidth": 300,
+        "logoHeight": 234,
+        "displayWidth": 106
       },
       {
         "name": "Offshore Risk Management",
-        "logo": "/images/partners/offshore-risk-management.jpg"
+        "logo": "/images/partners/offshore-risk-management.jpg",
+        "url": "https://www.offshorerisk.com/en/home-page/",
+        "blurb": "Offshore Risk Management arranges marine, aviation and specialty insurance internationally, with offices across North America, the Caribbean and the Pacific Rim.",
+        "logoWidth": 360,
+        "logoHeight": 150,
+        "displayWidth": 195
       }
     ]
   },

@@ -17,6 +17,17 @@ export function SliderDots({ titles, index, select }: { titles: string[]; index:
   </div>;
 }
 
+export function PartnerArrows({ previous, next }: { previous: () => void; next: () => void }) {
+  return <div className="partner-arrows">
+    <button type="button" aria-label="Previous partners" onClick={previous}>
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="m23 10-10 10 10 10" /></svg>
+    </button>
+    <button type="button" aria-label="Next partners" onClick={next}>
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="m17 10 10 10-10 10" /></svg>
+    </button>
+  </div>;
+}
+
 export function SliderPause({ paused, toggle }: { paused: boolean; toggle: () => void }) {
   return <button type="button" className="slider-pause" aria-label={paused ? "Start automatic slides" : "Pause automatic slides"} onClick={toggle}>
     <svg viewBox="0 0 24 24" aria-hidden="true">{paused ? <path d="m9 6 9 6-9 6Z" /> : <path d="M8 6h3v12H8zm5 0h3v12h-3z" />}</svg>
