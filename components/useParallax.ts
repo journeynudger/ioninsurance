@@ -3,7 +3,7 @@
 import { useEffect, type RefObject } from "react";
 
 /** Frame-rate-independent easing, active only while a visible section is moving. */
-export function useParallax(ref: RefObject<HTMLElement | null>, mode: "image" | "hero" | "group" = "image") {
+export function useParallax(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
@@ -32,7 +32,7 @@ export function useParallax(ref: RefObject<HTMLElement | null>, mode: "image" | 
       const bounds = element.getBoundingClientRect();
       if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
       const progress = Math.max(0, Math.min(1, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
-      target = mode === "hero" ? Math.max(0, -bounds.top * 0.22) : (progress - 0.5) * (mode === "group" ? 64 : bounds.height * 0.24);
+      target = (progress - 0.5) * bounds.height * 0.24;
       if (!initialized) { current = target; initialized = true; }
       if (!frame) { previousTime = 0; frame = requestAnimationFrame(paint); }
     };
@@ -47,5 +47,5 @@ export function useParallax(ref: RefObject<HTMLElement | null>, mode: "image" | 
       motion.removeEventListener("change", update);
       element.style.removeProperty("--image-shift");
     };
-  }, [ref, mode]);
+  }, [ref]);
 }

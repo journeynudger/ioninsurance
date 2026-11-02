@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactSection from "@/components/ContactSection";
+import OutboundArrow from "@/components/OutboundArrow";
 import { financials } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -26,9 +27,10 @@ export default function FinancialsPage() {
               />
               <div>
                 <h2 className="pb-[10px] text-[30px] leading-none text-ink min-[981px]:text-[35px]">ION Insurance Inc.</h2>
-                <p className="pb-[10px] text-[24px] leading-none text-[#7a7a7a] min-[981px]:text-[30px]">{r.title}</p>
+                <p className="display-heading pb-[10px] text-[24px] leading-none text-[#7a7a7a] min-[981px]:text-[30px]">{r.title}</p>
                 <p className="mt-4 text-[17px] leading-[1.45] min-[981px]:text-[20px] min-[981px]:leading-[24px]">{r.text}</p>
-                <a href={r.pdf} className="mt-6 inline-block rounded-[25px] border border-heading bg-panel px-5 py-[6px] text-[20px] leading-[34px] text-heading transition-colors hover:bg-heading hover:text-white">
+                <a href={r.pdf} className="outbound-link mt-6 inline-flex items-center gap-3 rounded-[25px] border border-heading bg-panel px-5 py-[6px] text-[20px] leading-[34px] text-heading transition-colors hover:bg-heading hover:text-white">
+                  <OutboundArrow />
                   Full Report<span className="sr-only">: {r.title} (PDF, {r.pages} pages, {r.size})</span>
                 </a>
               </div>

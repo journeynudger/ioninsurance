@@ -60,12 +60,12 @@ export default function Header() {
           </svg>
         </button>
       </div>
-      <dialog ref={dialog} id="mobile-nav" className="mobile-menu" aria-label="Main menu" onClose={() => setOpen(false)}>
+      <dialog ref={dialog} id="mobile-nav" className="mobile-menu" aria-label="Main menu" tabIndex={-1} autoFocus onClose={() => setOpen(false)}>
         <div className="mobile-menu__bar">
           <Link href="/" onClick={closeMenu} aria-label={`${site.legalName}, home`} className="header-brand">
             <Image src="/images/ion-logo-white.png" alt="" width={500} height={200} className="h-[60px] w-auto brightness-0" />
           </Link>
-          <button type="button" onClick={closeMenu} className="mobile-menu__close" autoFocus>
+          <button type="button" onClick={closeMenu} className="mobile-menu__close">
             Close
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
           </button>
@@ -76,7 +76,6 @@ export default function Header() {
               <li key={item.href}>
                 <Link href={item.href} onClick={closeMenu} aria-current={pathname === item.href ? "page" : undefined}>
                   {item.label}
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
                 </Link>
               </li>
             ))}

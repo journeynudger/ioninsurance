@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useParallax } from "./useParallax";
 
 export default function GroupIntro({ title, text }: { title: string; text: string }) {
   const ref = useRef<HTMLElement>(null);
-  useParallax(ref, "group");
 
   useEffect(() => {
     const element = ref.current;
@@ -29,8 +27,10 @@ export default function GroupIntro({ title, text }: { title: string; text: strin
     return () => { observer.disconnect(); animations.forEach(animation => animation.cancel()); motion.removeEventListener("change", stop); };
   }, []);
 
-  return <section ref={ref} aria-labelledby="group-title" className="wrap group-intro grid gap-6 py-16 min-[981px]:grid-cols-3 min-[981px]:gap-0 min-[981px]:py-[192px]">
+  return <section ref={ref} aria-labelledby="group-title" className="group-intro">
+    <div className="wrap grid gap-6 py-16 min-[981px]:grid-cols-3 min-[981px]:gap-10 min-[981px]:py-[192px]">
     <div className="group-intro__title"><h2 id="group-title" className="group-intro__reveal text-[40px] leading-none text-heading min-[981px]:text-[45px]">{title}</h2></div>
     <div className="group-intro__text min-[981px]:col-span-2"><p className="group-intro__reveal text-[20px] leading-[30px]">{text}</p></div>
+    </div>
   </section>;
 }

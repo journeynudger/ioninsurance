@@ -4,6 +4,7 @@ import Image from "next/image";
 import type { Partner } from "@/lib/content";
 import { useCarousel } from "./useCarousel";
 import { PartnerArrows } from "./SliderControls";
+import OutboundArrow from "./OutboundArrow";
 
 export default function PartnerGrid({ partners }: { partners: Partner[] }) {
   const pages = Array.from({ length: Math.ceil(partners.length / 6) }, (_, i) => partners.slice(i * 6, i * 6 + 6));
@@ -19,9 +20,9 @@ export default function PartnerGrid({ partners }: { partners: Partner[] }) {
             <div className="partner-card__logo">
               <Image src={partner.logo} alt={`${partner.name} logo`} width={partner.logoWidth} height={partner.logoHeight} sizes={`${partner.displayWidth}px`} style={{ width: partner.displayWidth, height: "auto" }} />
             </div>
-            <a href={partner.url} target="_blank" rel="noopener noreferrer">
+            <a className="outbound-link" href={partner.url} target="_blank" rel="noopener noreferrer">
+              <OutboundArrow />
               Read More<span className="sr-only"> about {partner.name} (opens in a new tab)</span>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
             </a>
           </article>)}
         </div>)}

@@ -20,10 +20,10 @@ export function SliderDots({ titles, index, select }: { titles: string[]; index:
 export function PartnerArrows({ previous, next }: { previous: () => void; next: () => void }) {
   return <div className="partner-arrows">
     <button type="button" aria-label="Previous partners" onClick={previous}>
-      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="m23 10-10 10 10 10" /></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m7-7-7 7 7 7" /></svg>
     </button>
     <button type="button" aria-label="Next partners" onClick={next}>
-      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="m17 10 10 10-10 10" /></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" /></svg>
     </button>
   </div>;
 }

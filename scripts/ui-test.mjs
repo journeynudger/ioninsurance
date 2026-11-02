@@ -63,16 +63,16 @@ ok((await rmInsurance.locator('[aria-hidden="false"]').getAttribute("aria-label"
 await rm.close();
 // products accordion
 await p.goto(B + "/products", { waitUntil: "networkidle" });
-ok((await p.locator("details[open]").count()) === 0, "products all closed at first");
+ok((await p.locator('.product-toggle[aria-expanded="true"]').count()) === 0, "products all closed at first");
 await p.getByRole("heading", { name: "Marine", exact: true }).click();
 ok(await p.getByText("Hull Insurance:", { exact: true }).isVisible(), "row opens");
 await p.getByRole("heading", { name: "Aviation", exact: true }).click();
-ok((await p.locator("details[open]").count()) === 1 && await p.getByText("Ground Risk Hull Insurance:").isVisible(), "only one row open at a time");
+ok((await p.locator('.product-toggle[aria-expanded="true"]').count()) === 1 && await p.getByText("Ground Risk Hull Insurance:").isVisible(), "only one row open at a time");
 await p.waitForTimeout(400);
-const bg = await p.locator("details[open] > summary").evaluate((e) => getComputedStyle(e).backgroundColor);
-ok(bg === "rgb(0, 0, 0)", "open row is the black bar");
+const bg = await p.locator('.product-toggle[aria-expanded="true"]').evaluate((e) => getComputedStyle(e).backgroundColor);
+ok(bg === "rgb(244, 244, 244)", "open row uses a light neutral background");
 await p.goto(B + "/products#surety", { waitUntil: "networkidle" }); await p.waitForTimeout(300);
-ok(await p.locator("details#surety").evaluate((d) => d.open), "/products#surety opens Surety");
+ok(await p.locator("#surety-button").getAttribute("aria-expanded") === "true", "/products#surety opens Surety");
 // all pdf links 200
 await p.goto(B + "/financials", { waitUntil: "networkidle" });
 const pdfs = await p.locator('a[href$=".pdf"]').evaluateAll((as) => as.map((a) => a.href));

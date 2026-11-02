@@ -4,14 +4,12 @@ import Image from "next/image";
 import type { Img } from "@/lib/content";
 import { useCarousel } from "./useCarousel";
 import { SliderArrows, SliderDots } from "./SliderControls";
-import { useParallax } from "./useParallax";
 
 export interface Slide { title: string; text: string; image: Img }
 
 /** The original hero advances with arrows, dots, or a swipe, not a timer. */
 export default function HeroSlider({ slides, label, titleAs = "p" }: { slides: Slide[]; label: string; titleAs?: "p" | "h1" }) {
   const { ref, index, select, interaction } = useCarousel(slides.length);
-  useParallax(ref, "hero");
   const many = slides.length > 1;
   const Title = titleAs;
 
