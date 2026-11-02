@@ -22,7 +22,7 @@ await p.close();
 p = await b.newPage({ viewport: { width: 1280, height: 900 } });
 await p.goto(B + "/", { waitUntil: "networkidle" });
 ok(await p.getByRole("navigation", { name: "Main" }).first().isVisible() && !(await p.getByRole("button", { name: "Menu" }).isVisible()), "desktop shows links, no hamburger");
-// Original hero is manual; the lower insurance section rotates every five seconds.
+// Hero is manual; the lower insurance section gives each product ten seconds.
 const hero = p.getByRole("region", { name: "Our lines of insurance", exact: true });
 const insurance = p.getByRole("region", { name: "Lines of insurance", exact: true });
 await hero.getByRole("button", { name: "Show slide 4: Marine Insurance" }).click();
@@ -41,7 +41,7 @@ await insurance.scrollIntoViewIfNeeded();
 await p.mouse.move(1, 1);
 await p.evaluate(() => document.activeElement.blur());
 const before = await insurance.locator('[aria-hidden="false"]').getAttribute("aria-label");
-await p.waitForTimeout(5400);
+await p.waitForTimeout(10400);
 ok((await insurance.locator('[aria-hidden="false"]').getAttribute("aria-label")) !== before, "insurance carousel advances automatically");
 const partners = p.getByRole("region", { name: "Partner logos", exact: true });
 await p.setViewportSize({ width: 390, height: 844 });
@@ -50,7 +50,7 @@ await p.waitForTimeout(900);
 ok((await partners.locator(".partner-slider__track").evaluate(el => Math.round(el.scrollLeft / (el.clientWidth + 15)))) === 2, "partner dots navigate three-logo pages");
 await p.setViewportSize({ width: 1280, height: 900 });
 // FAQ
-ok(await p.locator("details").first().evaluate((d) => d.open), "first FAQ open by default");
+ok(await p.locator("#faq-question-0").getAttribute("aria-expanded") === "true", "first FAQ open by default");
 await p.getByText("What sets ION Insurance apart from other insurers?").click();
 ok(await p.getByText("What sets ION Insurance apart from other insurers is our specialized focus").isVisible(), "FAQ opens on click");
 // Reduced motion disables the lower carousel's automatic progression.
@@ -58,7 +58,7 @@ const rm = await b.newPage({ viewport: { width: 1280, height: 900 }, reducedMoti
 await rm.goto(B + "/", { waitUntil: "networkidle" });
 const rmInsurance = rm.getByRole("region", { name: "Lines of insurance", exact: true });
 await rmInsurance.scrollIntoViewIfNeeded();
-await rm.mouse.move(1, 1); await rm.waitForTimeout(5400);
+await rm.mouse.move(1, 1); await rm.waitForTimeout(10400);
 ok((await rmInsurance.locator('[aria-hidden="false"]').getAttribute("aria-label")).includes("Commercial Property"), "reduced motion: automatic carousel stays put");
 await rm.close();
 // products accordion

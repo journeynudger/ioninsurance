@@ -140,20 +140,27 @@ summary::-webkit-details-marker {
 .slider-pause { position: absolute; z-index: 3; right: 14px; bottom: 7px; display: grid; place-items: center; width: 36px; height: 36px; cursor: pointer; opacity: .7; }
 .slider-pause:hover, .slider-pause:focus-visible { opacity: 1; }
 .slider-pause svg { width: 20px; height: 20px; fill: currentColor; }
-.insurance-slider__slides { display: grid; margin-inline: 6%; }
+.insurance-slider::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(180deg, rgb(7 14 20 / .6), rgb(7 14 20 / .64) 70%, rgb(7 14 20 / .68)); }
+.insurance-slider__slides { display: grid; }
 .insurance-slider__slide { grid-area: 1 / 1; visibility: hidden; }
 .insurance-slider__slide[data-active=true] { visibility: visible; }
-.insurance-slider__photo { position: absolute; inset: -12% 0; z-index: -1; opacity: 0; transform: translate3d(0, var(--image-shift, 0px), 0); transition: opacity .7s ease-in-out; }
+.insurance-slider__slide[data-active=true] p { animation: insurance-copy-in .8s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes insurance-copy-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.insurance-slider__photo { position: absolute; inset: -12% 0; z-index: -1; opacity: 0; transform: translate3d(0, var(--image-shift, 0px), 0); transition: opacity 1.2s ease-in-out; }
 .insurance-slider__photo[data-active=true] { opacity: 1; }
-.insurance-slider__photo::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at center, rgb(0 0 0 / .3), rgb(0 0 0 / .53)); }
 .insurance-slider__photo img { object-position: 50% var(--image-position, 50%); }
-.insurance-slider__copy { padding: 10% 8% 16%; font-size: 20px; line-height: 30px; text-shadow: 0 1px 3px rgb(0 0 0 / .3); }
+.insurance-slider__copy { position: relative; z-index: 1; width: min(1200px, 100%); margin-inline: auto; padding: 80px 7% 110px; font-size: 22px; line-height: 1.5; text-shadow: 0 1px 3px rgb(0 0 0 / .25); }
 .insurance-slider__copy p { text-wrap: wrap; }
-.insurance-slider__list { text-align: center; }
-.insurance-slider__list ol { display: inline-block; max-width: 100%; padding: 0 0 23px 20px; text-align: left; }
-.insurance-slider__list li { line-height: 24px; }
-.insurance-slider__list button { display: block; text-align: left; cursor: pointer; font-size: 20px; line-height: 1.2; }
-.insurance-slider__list [aria-current=true] { font-size: 40px; }
+.insurance-slider__list { text-align: center; margin-bottom: 48px; }
+.insurance-slider__list ol { position: relative; display: inline-block; max-width: 100%; padding-left: 32px; text-align: left; }
+.insurance-slider__list ol::before { content: ""; position: absolute; top: 0; left: 0; width: 14px; height: 14px; border-radius: 50%; background: #fff; transform: translateY(calc(var(--active-offset, 22px) - 7px)); transition: transform .7s cubic-bezier(.22, 1, .36, 1); }
+.insurance-slider__list button { display: grid; grid-template-columns: 2ch minmax(0, 1fr); align-items: center; gap: 16px; min-height: 44px; width: 100%; padding: 5px 0; text-align: left; cursor: pointer; color: rgb(255 255 255 / .9); font-size: 24px; line-height: 1.2; transition: color .5s ease; }
+.insurance-slider__list [aria-current=true] { color: white; font-weight: 500; }
+.insurance-slider .slider-dots { bottom: 16px; }
+.insurance-slider .slider-dots button { width: 34px; height: 44px; }
+.insurance-slider .slider-dots span { background: rgb(255 255 255 / .5); transition: background .5s ease, box-shadow .5s ease; }
+.insurance-slider .slider-dots [aria-current=true] span { background: white; box-shadow: 0 0 0 4px rgb(255 255 255 / .25); }
+.insurance-slider .slider-pause { bottom: 20px; }
 .partner-slider { display: none; position: relative; margin-top: 40px; padding: 10px 0; }
 .partner-slider__track { display: flex; gap: 15px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
 .partner-slider__track::-webkit-scrollbar { display: none; }
@@ -190,7 +197,7 @@ summary::-webkit-details-marker {
 @media (max-width: 980px) {
   .hero-slider__caption { padding-bottom: 30px; }
   .hero-slider .slider-dots { display: none; }
-  .insurance-slider__copy { padding-top: 15%; }
+  .insurance-slider__copy { padding: 64px 10% 96px; font-size: 20px; }
   .insurance-slider .slider-arrow { display: block; }
   .partner-carousel { display: none; }
   .partner-slider { display: block; }
@@ -200,7 +207,11 @@ summary::-webkit-details-marker {
   .hero-slider { height: 80svh; }
   .hero-slider__title { font-size: 40px; }
   .hero-slider__text { font-size: 14px; }
-  .insurance-slider__copy { padding-top: 25%; }
+  .insurance-slider__copy { padding: 48px 44px 88px; font-size: 18px; line-height: 1.55; }
+  .insurance-slider__list { margin-bottom: 28px; }
+  .insurance-slider__list ol { padding-left: 24px; }
+  .insurance-slider__list ol::before { width: 10px; height: 10px; transform: translateY(calc(var(--active-offset, 22px) - 5px)); }
+  .insurance-slider__list button { gap: 10px; font-size: clamp(16px, 4.8vw, 20px); }
   .slider-arrow--previous { left: 0; }
   .slider-arrow--next { right: 0; }
 }
@@ -210,6 +221,8 @@ summary::-webkit-details-marker {
 @media (prefers-reduced-motion: reduce) {
   .slider-arrow, .insurance-slider__photo, .partner-carousel__track { transition: none; }
   .insurance-slider__photo { inset: 0; transform: none; }
+  .insurance-slider__list ol::before, .insurance-slider__list button, .insurance-slider .slider-dots span { transition: none; }
+  .insurance-slider__slide[data-active=true] p { animation: none; }
 }
 
 /* Use the native SF display face on Apple devices, with system fallbacks elsewhere. */

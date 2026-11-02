@@ -16,16 +16,27 @@ export function useCarousel(count: number, interval = 0) {
     const element = ref.current;
     if (!element || !interval || count < 2 || hovered || focused || paused) return;
     let visible = false;
+    let timer = 0;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const schedule = () => {
+      window.clearTimeout(timer);
+      if (visible && !document.hidden && !motion.matches) {
+        timer = window.setTimeout(() => setIndex(current => (current + 1) % count), interval);
+      }
+    };
     const observer = new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
+      visible = entry.isIntersecting && entry.intersectionRatio >= 0.2;
+      schedule();
     }, { threshold: 0.2 });
     observer.observe(element);
-    const timer = window.setInterval(() => {
-      if (visible && !document.hidden && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        setIndex((current) => (current + 1) % count);
-      }
-    }, interval);
-    return () => { observer.disconnect(); window.clearInterval(timer); };
+    document.addEventListener("visibilitychange", schedule);
+    motion.addEventListener("change", schedule);
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+      document.removeEventListener("visibilitychange", schedule);
+      motion.removeEventListener("change", schedule);
+    };
   }, [count, interval, hovered, focused, paused, index]);
 
   return {
