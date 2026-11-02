@@ -23,11 +23,11 @@ export default function Header() {
 
   return (
     <header className={`on-dark z-40 w-full bg-bar ${overlay ? "absolute inset-x-0 top-0" : "relative"}`}>
-      <div className="flex h-[68px] items-center justify-between px-2 md:h-[101px] md:px-[26px]">
+      <div className="flex h-[68px] items-center justify-between px-2 min-[981px]:h-[101px] min-[981px]:px-[26px]">
         <Link href="/" aria-label={`${site.legalName}, home`} className="block">
-          <Image src="/images/ion-logo-white.png" alt="" width={500} height={200} priority className="h-[60px] w-auto md:h-[81px]" />
+          <Image src="/images/ion-logo-white.png" alt="" width={500} height={200} priority className="h-[60px] w-auto min-[981px]:h-[81px]" />
         </Link>
-        <nav aria-label="Main" className="hidden md:block">
+        <nav aria-label="Main" className="hidden min-[981px]:block">
           <ul className="flex gap-[22px]">
             {site.nav.map((item) => (
               <li key={item.href}>
@@ -47,7 +47,7 @@ export default function Header() {
           onClick={() => setOpen((o) => !o)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          className="grid size-11 place-items-center text-white md:hidden"
+          className="grid size-11 place-items-center text-white min-[981px]:hidden"
         >
           <span className="sr-only">{open ? "Close menu" : "Menu"}</span>
           <svg aria-hidden="true" width="26" height="20" viewBox="0 0 26 20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -55,7 +55,7 @@ export default function Header() {
           </svg>
         </button>
       </div>
-      <nav id="mobile-nav" aria-label="Main" hidden={!open} className="border-t border-white/15 md:hidden">
+      <nav id="mobile-nav" aria-label="Main" hidden={!open} className="border-t border-white/15 min-[981px]:hidden">
         <ul className="px-[8%] py-3">
           {site.nav.map((item) => (
             <li key={item.href}>

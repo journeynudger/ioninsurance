@@ -8,7 +8,7 @@
     "message": "Please let us know what type of insurance you're looking for."
   },
   "submit": "Submit",
-  "success": "Thanks for contacting us! We will get in touch with you shortly.",
+  "success": "Thanks for submitting the form. We’ll be in touch shortly.",
   "failure": "Your message didn’t send. Please try again, or email us at info@ion.co.cr.",
   "placeholders": {
     "first": "First",

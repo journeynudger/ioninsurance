@@ -16,8 +16,8 @@ function linkify(text: string) {
 export default function LegalPage({ page }: { page: Legal }) {
   return (
     <>
-      <article className="wrap pt-14 text-[16px] leading-[23.8px] md:pt-[78px]">
-        <h1 className="pb-[10px] text-[40px] font-bold leading-none text-ink md:text-[50px]">{page.title}</h1>
+      <article className="wrap pt-14 text-[16px] leading-[23.8px] min-[981px]:pt-[78px]">
+        <h1 className="pb-[10px] text-[40px] font-bold leading-none text-ink min-[981px]:text-[50px]">{page.title}</h1>
         <p className="mt-10 font-bold">{page.lede}</p>
         {page.sections.map((s) => (
           <section key={s.title} className="mt-4">

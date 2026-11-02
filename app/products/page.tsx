@@ -16,9 +16,9 @@ export default function ProductsPage() {
     <>
       <LineSlider />
       <OpenFromHash />
-      <section className="wrap pt-16 md:pt-20">
-        <h1 className="text-[45px] leading-none text-heading md:pl-[67px] md:text-[70px]">Products</h1>
-        <div className="mt-10 border-b-[3px] border-[#444] md:mt-14">
+      <section className="wrap pt-16 min-[981px]:pt-20">
+        <h1 className="text-[45px] leading-none text-heading min-[981px]:pl-[67px] min-[981px]:text-[70px]">Products</h1>
+        <div className="mt-10 border-b-[3px] border-[#444] min-[981px]:mt-14">
           {lines.map((line) => (
             <details key={line.id} id={line.id} name="product" className="group scroll-mt-4 border-t-[3px] border-[#444]">
               <summary className="flex cursor-pointer items-center gap-4 px-[25px] py-[21px] text-[20px] leading-tight text-black transition-colors hover:bg-[#f2f2f2] group-open:bg-black group-open:text-white group-open:hover:bg-black">
@@ -27,24 +27,24 @@ export default function ProductsPage() {
                 <span aria-hidden="true" className="hidden text-[18px] leading-none group-open:inline">×</span>
               </summary>
               <div className="pb-12 pt-6">
-                <h3 className="pb-[10px] text-[26px] leading-[1.1] text-ink md:text-[30px] md:leading-[30px]">{line.heading}</h3>
-                <p className="text-[18px] leading-[26px] md:text-[20px]">{line.intro}</p>
+                <h3 className="pb-[10px] text-[26px] leading-[1.1] text-ink min-[981px]:text-[30px] min-[981px]:leading-[30px]">{line.heading}</h3>
+                <p className="text-[18px] leading-[26px] min-[981px]:text-[20px]">{line.intro}</p>
                 <h4 className="mt-6 pb-[10px] text-[24px] leading-none text-[#696666]">Insurance Coverage</h4>
-                <ul className="list-disc space-y-0 pl-[18px] text-[16px] leading-[26px] md:text-[18px]">
+                <ul className="list-disc space-y-0 pl-[18px] text-[16px] leading-[26px] min-[981px]:text-[18px]">
                   {line.coverage.map((c) => (
                     <li key={c.name}>
                       <strong className="font-bold text-ink">{c.name}:</strong> {c.text}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-12 grid gap-8 md:grid-cols-2">
+                <div className="mt-12 grid gap-8 min-[981px]:grid-cols-2">
                   <div className="relative aspect-square">
-                    <Image src={line.image.src} alt={line.image.alt} fill sizes="(min-width: 768px) 497px, 80vw" className="object-cover" />
+                    <Image src={line.image.src} alt={line.image.alt} fill sizes="(min-width: 981px) 497px, 80vw" className="object-cover" />
                   </div>
                   <div>
-                    <p className="pb-[10px] text-[26px] leading-[1.1] text-ink md:text-[30px] md:leading-[30px]">{line.name}</p>
+                    <p className="pb-[10px] text-[26px] leading-[1.1] text-ink min-[981px]:text-[30px] min-[981px]:leading-[30px]">{line.name}</p>
                     <p className="pb-[10px] text-[24px] leading-none text-[#696666]">Insurance Coverage</p>
-                    <p className="text-[18px] leading-[26px] md:text-[20px]">{line.closing}</p>
+                    <p className="text-[18px] leading-[26px] min-[981px]:text-[20px]">{line.closing}</p>
                     <Link href="/connect" className="mt-3 inline-block text-[16px] text-ink hover:underline">
                       Connect<span className="sr-only"> about {line.name}</span> <span aria-hidden="true" className="ml-3">›</span>
                     </Link>

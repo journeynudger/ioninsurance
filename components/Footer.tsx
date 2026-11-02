@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-white pb-8 pt-7">
-      <div className="px-[8%] md:px-16">
+      <div className="px-[8%] min-[981px]:px-16">
         <p className="text-[25px] font-semibold uppercase leading-[24px] text-heading">
           ION Insurance
           <br />

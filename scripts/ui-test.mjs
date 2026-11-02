@@ -1,4 +1,4 @@
-// Menu, slider, tabs, FAQ and products accordion. Run against `next start -p 3141`.
+// Menu, sliders, FAQ and products accordion. Run against `next start -p 3141`.
 import { chromium } from "playwright-core";
 let pass = 0, fail = 0;
 const ok = (c, n) => { if (c) pass++; else fail++; console.log(`${c ? "PASS" : "FAIL"} ${n}`); };
@@ -22,29 +22,44 @@ await p.close();
 p = await b.newPage({ viewport: { width: 1280, height: 900 } });
 await p.goto(B + "/", { waitUntil: "networkidle" });
 ok(await p.getByRole("navigation", { name: "Main" }).first().isVisible() && !(await p.getByRole("button", { name: "Menu" }).isVisible()), "desktop shows links, no hamburger");
-// slider dots
-await p.getByRole("button", { name: "Show slide 4: Marine Insurance" }).click();
-await p.waitForTimeout(800);
-ok((await p.locator('[aria-roledescription="slide"][aria-hidden="false"]').innerText()).includes("Marine Insurance"), "slider dot shows chosen slide");
-// autoplay advances (after hover leaves)
-await p.mouse.move(640, 1500);
-await p.getByRole("button", { name: "Show slide 1: Commercial Property" }).click();
-await p.mouse.move(5, 1500); await p.evaluate(() => document.activeElement.blur());
+// Original hero is manual; the lower insurance section rotates every five seconds.
+const hero = p.getByRole("region", { name: "Our lines of insurance", exact: true });
+const insurance = p.getByRole("region", { name: "Lines of insurance", exact: true });
+await hero.getByRole("button", { name: "Show slide 4: Marine Insurance" }).click();
+ok((await hero.locator('[aria-roledescription="slide"][aria-hidden="false"]').innerText()).includes("Marine Insurance"), "hero dot shows chosen slide");
+await hero.getByRole("button", { name: "Next slide", exact: true }).click();
+ok((await hero.locator('[aria-roledescription="slide"][aria-hidden="false"]').innerText()).includes("Aviation Insurance"), "hero next arrow advances");
+await hero.getByRole("button", { name: "Previous slide", exact: true }).click();
+ok((await hero.locator('[aria-roledescription="slide"][aria-hidden="false"]').innerText()).includes("Marine Insurance"), "hero previous arrow returns");
 await p.waitForTimeout(7600);
-ok((await p.locator('[aria-roledescription="slide"][aria-hidden="false"]').innerText()).includes("Financial Lines"), "slider autoplays to the next slide");
-// tabs click + arrows
-await p.getByRole("tab", { name: "03 Aviation" }).click();
-ok((await p.locator("#line-panel").innerText()).startsWith("The sky is the ultimate frontier"), "tab click swaps the paragraph");
-await p.keyboard.press("ArrowDown");
-ok((await p.getByRole("tab", { selected: true }).innerText()).includes("04 Financial Lines") && (await p.evaluate(() => document.activeElement.textContent)).includes("Financial Lines"), "arrow key moves tab and focus");
+ok((await hero.locator('[aria-roledescription="slide"][aria-hidden="false"]').innerText()).includes("Marine Insurance"), "hero stays on the reader's selection");
+await insurance.getByRole("button", { name: "Show slide 3: Aviation", exact: true }).click();
+ok((await insurance.locator('[aria-hidden="false"] p').innerText()).startsWith("The sky is the ultimate frontier"), "insurance dot swaps photo, selection and copy");
+await insurance.getByRole("button", { name: "Show slide 3: Aviation", exact: true }).press("ArrowRight");
+ok((await insurance.locator('[aria-hidden="false"]').getAttribute("aria-label")).includes("Financial Lines"), "arrow key advances insurance carousel");
+await insurance.scrollIntoViewIfNeeded();
+await p.mouse.move(1, 1);
+await p.evaluate(() => document.activeElement.blur());
+const before = await insurance.locator('[aria-hidden="false"]').getAttribute("aria-label");
+await p.waitForTimeout(5400);
+ok((await insurance.locator('[aria-hidden="false"]').getAttribute("aria-label")) !== before, "insurance carousel advances automatically");
+const partners = p.getByRole("region", { name: "Partner logos", exact: true });
+await p.setViewportSize({ width: 390, height: 844 });
+await partners.getByRole("button", { name: "Show partners 7 to 9" }).click();
+await p.waitForTimeout(900);
+ok((await partners.locator(".partner-slider__track").evaluate(el => Math.round(el.scrollLeft / (el.clientWidth + 15)))) === 2, "partner dots navigate three-logo pages");
+await p.setViewportSize({ width: 1280, height: 900 });
 // FAQ
 ok(await p.locator("details").first().evaluate((d) => d.open), "first FAQ open by default");
 await p.getByText("What sets ION Insurance apart from other insurers?").click();
 ok(await p.getByText("What sets ION Insurance apart from other insurers is our specialized focus").isVisible(), "FAQ opens on click");
-// reduced motion: no autoplay
+// Reduced motion disables the lower carousel's automatic progression.
 const rm = await b.newPage({ viewport: { width: 1280, height: 900 }, reducedMotion: "reduce" });
-await rm.goto(B + "/", { waitUntil: "networkidle" }); await rm.mouse.move(5, 1500); await rm.waitForTimeout(7600);
-ok((await rm.locator('[aria-roledescription="slide"][aria-hidden="false"]').innerText()).includes("Commercial Property"), "reduced motion: slider stays put");
+await rm.goto(B + "/", { waitUntil: "networkidle" });
+const rmInsurance = rm.getByRole("region", { name: "Lines of insurance", exact: true });
+await rmInsurance.scrollIntoViewIfNeeded();
+await rm.mouse.move(1, 1); await rm.waitForTimeout(5400);
+ok((await rmInsurance.locator('[aria-hidden="false"]').getAttribute("aria-label")).includes("Commercial Property"), "reduced motion: automatic carousel stays put");
 await rm.close();
 // products accordion
 await p.goto(B + "/products", { waitUntil: "networkidle" });

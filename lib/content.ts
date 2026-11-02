@@ -16,7 +16,7 @@ export interface Site {
   nav: { label: string; href: string }[];
 }
 
-export interface Partner { name: string; logo: string; url?: string; blurb?: string }
+export interface Partner { name: string; logo: string; url?: string; blurb?: string; logoWidth?: number; logoHeight?: number; displayWidth?: number }
 export interface Home {
   group: { title: string; text: string };
   tabOrder: string[];

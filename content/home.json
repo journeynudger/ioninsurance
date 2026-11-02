@@ -20,37 +20,55 @@
         "name": "Inver Re",
         "logo": "/images/partners/inver-re.png",
         "url": "https://www.inverre.com/",
-        "blurb": "Founded in 2021, Inver Re is an independent specialist risk strategy and reinsurance broker based in London, Bermuda, and the US. Inver Re brings a…"
+        "blurb": "Founded in 2021, Inver Re is an independent specialist risk strategy and reinsurance broker based in London, Bermuda, and the US. Inver Re brings a…",
+        "logoWidth": 225,
+        "logoHeight": 225,
+        "displayWidth": 90
       },
       {
         "name": "Tysers Insurance Broker",
         "logo": "/images/partners/tysers.png",
         "url": "https://www.tysers.com/",
-        "blurb": "Insurance for over 200 years. Founded in 1820, Tysers is a leading independent international Lloyd's broker. Based at the heart of the world's premier insurance…"
+        "blurb": "Insurance for over 200 years. Founded in 1820, Tysers is a leading independent international Lloyd's broker. Based at the heart of the world's premier insurance…",
+        "logoWidth": 314,
+        "logoHeight": 161,
+        "displayWidth": 120
       },
       {
         "name": "CBC Insurance",
         "logo": "/images/partners/cbc.jpg",
         "url": "https://www.protectionre.com/",
-        "blurb": "At CBC, we offer our clients independent advice and insurance solutions, whether they are private individuals, intermediaries or international…"
+        "blurb": "At CBC, we offer our clients independent advice and insurance solutions, whether they are private individuals, intermediaries or international…",
+        "logoWidth": 250,
+        "logoHeight": 279,
+        "displayWidth": 103
       },
       {
         "name": "Miller Insurance",
         "logo": "/images/partners/miller.png",
         "url": "https://www.miller-insurance.com/",
-        "blurb": "Miller is one of the leading specialist insurance and reinsurance brokers operating through Lloyd's, the London market and internationally…"
+        "blurb": "Miller is one of the leading specialist insurance and reinsurance brokers operating through Lloyd's, the London market and internationally…",
+        "logoWidth": 414,
+        "logoHeight": 122,
+        "displayWidth": 240
       },
       {
         "name": "Amwins",
         "logo": "/images/partners/amwins.png",
         "url": "https://www.amwins.com/",
-        "blurb": "Amwins understands your clients' businesses aren't static — they're complex and evolutionary in nature, and require future-focused insurance solutions that keep…"
+        "blurb": "Amwins understands your clients' businesses aren't static — they're complex and evolutionary in nature, and require future-focused insurance solutions that keep…",
+        "logoWidth": 549,
+        "logoHeight": 92,
+        "displayWidth": 195
       },
       {
         "name": "Ensurance",
         "logo": "/images/partners/ensurance.png",
         "url": "https://ensurance.com/",
-        "blurb": "Since 1998 ensurance.com has been the internet's number one place to find the best deal on car insurance and homeowners insurance while preparing you for…"
+        "blurb": "Since 1998 ensurance.com has been the internet's number one place to find the best deal on car insurance and homeowners insurance while preparing you for…",
+        "logoWidth": 410,
+        "logoHeight": 123,
+        "displayWidth": 196
       }
     ],
     "more": [

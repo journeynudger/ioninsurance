@@ -11,23 +11,23 @@ export const metadata: Metadata = {
 export default function FinancialsPage() {
   return (
     <>
-      <section className="mx-auto w-[min(1024px,88%)] pt-14 md:pt-[91px]">
-        <h1 className="text-[42px] leading-[1.05] text-heading md:px-16 md:text-[70px] md:leading-[70px]">{financials.title}</h1>
-        <ul className="mt-12 space-y-12 md:mt-[118px] md:space-y-[64px]">
+      <section className="mx-auto w-[min(1024px,88%)] pt-14 min-[981px]:pt-[91px]">
+        <h1 className="text-[42px] leading-[1.05] text-heading min-[981px]:px-16 min-[981px]:text-[70px] min-[981px]:leading-[70px]">{financials.title}</h1>
+        <ul className="mt-12 space-y-12 min-[981px]:mt-[118px] min-[981px]:space-y-[64px]">
           {financials.reports.map((r, i) => (
-            <li key={r.title} className="grid items-start gap-8 bg-panel p-6 sm:p-10 md:grid-cols-2 md:gap-[50px] md:p-16">
+            <li key={r.title} className="grid items-start gap-8 bg-panel p-6 sm:p-10 min-[981px]:grid-cols-2 min-[981px]:gap-[50px] min-[981px]:p-16">
               <Image
                 src={r.image.src}
                 alt={r.image.alt}
                 width={r.image.width}
                 height={r.image.height}
-                sizes="(min-width: 768px) 423px, 80vw"
-                className={`aspect-square w-full object-cover ${i % 2 ? "md:order-last" : ""}`}
+                sizes="(min-width: 981px) 423px, 80vw"
+                className={`aspect-square w-full object-cover ${i % 2 ? "min-[981px]:order-last" : ""}`}
               />
               <div>
-                <h2 className="pb-[10px] text-[30px] leading-none text-ink md:text-[35px]">ION Insurance Inc.</h2>
-                <p className="pb-[10px] text-[24px] leading-none text-[#7a7a7a] md:text-[30px]">{r.title}</p>
-                <p className="mt-4 text-[17px] leading-[1.45] md:text-[20px] md:leading-[24px]">{r.text}</p>
+                <h2 className="pb-[10px] text-[30px] leading-none text-ink min-[981px]:text-[35px]">ION Insurance Inc.</h2>
+                <p className="pb-[10px] text-[24px] leading-none text-[#7a7a7a] min-[981px]:text-[30px]">{r.title}</p>
+                <p className="mt-4 text-[17px] leading-[1.45] min-[981px]:text-[20px] min-[981px]:leading-[24px]">{r.text}</p>
                 <a href={r.pdf} className="mt-6 inline-block rounded-[25px] border border-heading bg-panel px-5 py-[6px] text-[20px] leading-[34px] text-heading transition-colors hover:bg-heading hover:text-white">
                   Full Report<span className="sr-only">: {r.title} (PDF, {r.pages} pages, {r.size})</span>
                 </a>
