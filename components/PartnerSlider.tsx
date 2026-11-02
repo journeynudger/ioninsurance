@@ -4,11 +4,11 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import type { Partner } from "@/lib/content";
 import { useCarousel } from "./useCarousel";
-import { SliderPause, PartnerArrows } from "./SliderControls";
+import { PartnerArrows } from "./SliderControls";
 
 export default function PartnerSlider({ partners }: { partners: Partner[] }) {
   const pages = Array.from({ length: Math.ceil(partners.length / 3) }, (_, i) => partners.slice(i * 3, i * 3 + 3));
-  const { ref, index, select, paused, setPaused, interaction } = useCarousel(pages.length, 5000);
+  const { ref, index, select, interaction } = useCarousel(pages.length);
   const track = useRef<HTMLDivElement>(null);
   const scrolling = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -44,6 +44,5 @@ export default function PartnerSlider({ partners }: { partners: Partner[] }) {
       {pages.map((page, i) => <button key={page[0].name} type="button" onClick={() => select(i)} aria-label={`Show partners ${i * 3 + 1} to ${Math.min(i * 3 + 3, partners.length)}`} aria-current={index === i ? "true" : undefined}><span /></button>)}
     </div>
     <PartnerArrows previous={() => select(index - 1)} next={() => select(index + 1)} />
-    <SliderPause paused={paused} toggle={() => setPaused(!paused)} />
   </section>;
 }

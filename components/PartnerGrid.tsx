@@ -3,11 +3,11 @@
 import Image from "next/image";
 import type { Partner } from "@/lib/content";
 import { useCarousel } from "./useCarousel";
-import { SliderPause, PartnerArrows } from "./SliderControls";
+import { PartnerArrows } from "./SliderControls";
 
 export default function PartnerGrid({ partners }: { partners: Partner[] }) {
   const pages = Array.from({ length: Math.ceil(partners.length / 6) }, (_, i) => partners.slice(i * 6, i * 6 + 6));
-  const { ref, index, select, paused, setPaused, interaction } = useCarousel(pages.length, 5000);
+  const { ref, index, select, interaction } = useCarousel(pages.length);
 
   return <section ref={ref} className="partner-carousel" aria-label="Our partners" aria-roledescription="carousel" {...interaction}>
     <div className="partner-carousel__viewport">
@@ -28,6 +28,5 @@ export default function PartnerGrid({ partners }: { partners: Partner[] }) {
       </div>
     </div>
     <PartnerArrows previous={() => select(index - 1)} next={() => select(index + 1)} />
-    <SliderPause paused={paused} toggle={() => setPaused(!paused)} />
   </section>;
 }

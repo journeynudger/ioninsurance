@@ -2,38 +2,50 @@
 
 import { useEffect, type RefObject } from "react";
 
-/** Move the image separately from the text; keep touch and reduced-motion reading still. */
-export function useParallax(ref: RefObject<HTMLElement | null>, hero = false) {
+/** Frame-rate-independent easing, active only while a visible section is moving. */
+export function useParallax(ref: RefObject<HTMLElement | null>, mode: "image" | "hero" | "group" = "image") {
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce), (max-width: 980px)");
     let frame = 0;
+    let current = 0;
+    let target = 0;
+    let previousTime = 0;
+    let initialized = false;
+    const paint = (time: number) => {
+      const elapsed = previousTime ? Math.min(time - previousTime, 64) : 16;
+      previousTime = time;
+      current += (target - current) * (1 - Math.exp(-elapsed / 85));
+      if (Math.abs(target - current) < 0.05) current = target;
+      element.style.setProperty("--image-shift", `${current.toFixed(2)}px`);
+      frame = current === target ? 0 : requestAnimationFrame(paint);
+    };
     const update = () => {
-      frame = 0;
       if (motion.matches) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        initialized = false;
         element.style.removeProperty("--image-shift");
-        element.style.removeProperty("--image-position");
         return;
       }
       const bounds = element.getBoundingClientRect();
       if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
-      if (hero) element.style.setProperty("--image-shift", `${Math.max(0, -bounds.top * 0.22)}px`);
-      else {
-        const progress = (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height);
-        element.style.setProperty("--image-shift", `${(Math.max(0, Math.min(1, progress)) - 0.5) * bounds.height * 0.24}px`);
-      }
+      const progress = Math.max(0, Math.min(1, (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height)));
+      target = mode === "hero" ? Math.max(0, -bounds.top * 0.22) : (progress - 0.5) * (mode === "group" ? 64 : bounds.height * 0.24);
+      if (!initialized) { current = target; initialized = true; }
+      if (!frame) { previousTime = 0; frame = requestAnimationFrame(paint); }
     };
-    const requestUpdate = () => { if (!frame) frame = requestAnimationFrame(update); };
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    motion.addEventListener("change", requestUpdate);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    motion.addEventListener("change", update);
     update();
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      motion.removeEventListener("change", requestUpdate);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      motion.removeEventListener("change", update);
+      element.style.removeProperty("--image-shift");
     };
-  }, [ref, hero]);
+  }, [ref, mode]);
 }
